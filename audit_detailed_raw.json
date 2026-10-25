@@ -1,0 +1,82 @@
+{
+  "container_users": {
+    "code": 2,
+    "stdout": "bash: -c: line 1: unexpected EOF while looking for matching `''",
+    "stderr": ""
+  },
+  "container_top_pids": {
+    "code": 2,
+    "stdout": "bash: -c: line 1: unexpected EOF while looking for matching `''",
+    "stderr": ""
+  },
+  "container_security_opts": {
+    "code": 2,
+    "stdout": "bash: -c: line 1: unexpected EOF while looking for matching `''",
+    "stderr": ""
+  },
+  "container_mounts": {
+    "code": 2,
+    "stdout": "bash: -c: line 1: syntax error near unexpected token `('\r\nbash: -c: line 1: `bash -c 'docker ps --format \\'{{.Names}}\\' | while read c; do echo \"=== $c ===\"; docker inspect --format \\'{{range .Mounts}}  - {{.Type}}: {{.Source}} -> {{.Destination}} (RW={{.RW}}){{\"\\n\"}}{{end}}\\' \"$c\"; done''",
+    "stderr": ""
+  },
+  "net_frontend_members": {
+    "code": 2,
+    "stdout": "bash: -c: line 1: unexpected EOF while looking for matching `''",
+    "stderr": ""
+  },
+  "net_backend_members": {
+    "code": 2,
+    "stdout": "bash: -c: line 1: unexpected EOF while looking for matching `''",
+    "stderr": ""
+  },
+  "net_monitoring_members": {
+    "code": 2,
+    "stdout": "bash: -c: line 1: unexpected EOF while looking for matching `''",
+    "stderr": ""
+  },
+  "loki_ready": {
+    "code": 0,
+    "stdout": "ready",
+    "stderr": ""
+  },
+  "loki_labels": {
+    "code": 0,
+    "stdout": "{\"status\":\"success\",\"data\":[\"container\",\"job\",\"service\",\"service_name\"]}",
+    "stderr": ""
+  },
+  "loki_query_1": {
+    "code": 0,
+    "stdout": "{\"status\":\"success\",\"data\":{\"resultType\":\"streams\",\"result\":[{\"stream\":{\"container\":\"news_nginx\",\"job\":\"nginx\",\"service\":\"nginx\",\"service_name\":\"nginx\"},\"values\":[[\"1792926488880754395\",\"127.0.0.1 - - [25/Oct/2026:11:08:08 +0000] \\\"GET /healthz/ HTTP/1.1\\\" 200 52129 \\\"-\\\" \\\"Wget\\\" \\\"-\\\"\"],[\"1792926488836837608\",\"127.0.0.1 - - [25/Oct/2026:11:08:08 +0000] \\\"GET /healthz HTTP/1.1\\\" 301 0 \\\"-\\\" \\\"Wget\\\" \\\"-\\\"\"]]}],\"stats\":{\"summary\":{\"bytesProcessedPerSecond\":2488062,\"linesProcessedPerSecond\":27645,\"totalBytesProcessed\":9270,\"totalLinesProcessed\":103,\"execTime\":0.003726,\"queueTime\":0.000231,\"subqueries\":0,\"totalEntriesReturned\":2,\"splits\":1,\"shards\":0,\"totalPostFilterLines\":103,\"totalStructuredMetadataBytesProcessed\":24},\"querier\":{\"store\":{\"totalChunksRef\":0,\"totalChunksDownloaded\":0,\"chunksDownloadTime\":0,\"queryReferencedStructuredMetadata\":false,\"chunk\":{\"headChunkBytes\":0,\"headChunkLines\":0,\"decompressedBytes\":0,\"decompressedLines\":0,\"compressedBytes\":0,\"totalDuplicates\":0,\"postFilterLines\":0,\"headChunkStructuredMetadataBytes\":0,\"decompressedStructuredMetadataBytes\":0},\"chunkRefsFetchTime\":0,\"congestionControlLatency\":0,\"pipelineWrapperFilteredLines\":0}},\"ingester\":{\"totalReached\":1,\"totalChunksMatched\":1,\"totalBatches\":1,\"totalLinesSent\":2,\"store\":{\"totalChunksRef\":0,\"totalChunksDownloaded\":0,\"chunksDownloadTime\":0,\"queryReferencedStructuredMetadata\":false,\"chunk\":{\"headChunkBytes\":9270,\"headChunkLines\":103,\"decompressedBytes\":0,\"decompressedLines\":0,\"compressedBytes\":0,\"totalDuplicates\":0,\"postFilterLines\":103,\"headChunkStructuredMetadataBytes\":24,\"decompressedStructuredMetadataBytes\":0},\"chunkRefsFetchTime\":177202,\"congestionControlLatency\":0,\"pipelineWrapperFilteredLines\":0}},\"cache\":{\"chunk\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"index\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"result\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"statsResult\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"volumeResult\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"seriesResult\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"labelResult\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"instantMetricResult\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0}},\"index\":{\"totalChunks\":0,\"postFilterChunks\":0,\"shardsDuration\":0}}}}",
+    "stderr": ""
+  },
+  "loki_query_2": {
+    "code": 0,
+    "stdout": "{\"status\":\"success\",\"data\":{\"resultType\":\"streams\",\"result\":[{\"stream\":{\"container\":\"news_nginx\",\"detected_level\":\"error\",\"job\":\"nginx\",\"service\":\"nginx\",\"service_name\":\"nginx\"},\"values\":[[\"1792926427772867336\",\"172.19.0.1 - - [25/Oct/2026:11:07:07 +0000] \\\"GET /error502 HTTP/2.0\\\" 502 34 \\\"-\\\" \\\"curl/8.18.0\\\" \\\"-\\\"\"],[\"1792926427761943688\",\"172.19.0.1 - - [25/Oct/2026:11:07:07 +0000] \\\"GET /error500 HTTP/2.0\\\" 500 44 \\\"-\\\" \\\"curl/8.18.0\\\" \\\"-\\\"\"]]}],\"stats\":{\"summary\":{\"bytesProcessedPerSecond\":2448456,\"linesProcessedPerSecond\":27205,\"totalBytesProcessed\":9270,\"totalLinesProcessed\":103,\"execTime\":0.003786,\"queueTime\":0.000246,\"subqueries\":0,\"totalEntriesReturned\":2,\"splits\":1,\"shards\":1,\"totalPostFilterLines\":2,\"totalStructuredMetadataBytesProcessed\":24},\"querier\":{\"store\":{\"totalChunksRef\":0,\"totalChunksDownloaded\":0,\"chunksDownloadTime\":0,\"queryReferencedStructuredMetadata\":false,\"chunk\":{\"headChunkBytes\":0,\"headChunkLines\":0,\"decompressedBytes\":0,\"decompressedLines\":0,\"compressedBytes\":0,\"totalDuplicates\":0,\"postFilterLines\":0,\"headChunkStructuredMetadataBytes\":0,\"decompressedStructuredMetadataBytes\":0},\"chunkRefsFetchTime\":0,\"congestionControlLatency\":0,\"pipelineWrapperFilteredLines\":0}},\"ingester\":{\"totalReached\":1,\"totalChunksMatched\":1,\"totalBatches\":1,\"totalLinesSent\":2,\"store\":{\"totalChunksRef\":0,\"totalChunksDownloaded\":0,\"chunksDownloadTime\":0,\"queryReferencedStructuredMetadata\":false,\"chunk\":{\"headChunkBytes\":9270,\"headChunkLines\":103,\"decompressedBytes\":0,\"decompressedLines\":0,\"compressedBytes\":0,\"totalDuplicates\":0,\"postFilterLines\":2,\"headChunkStructuredMetadataBytes\":24,\"decompressedStructuredMetadataBytes\":0},\"chunkRefsFetchTime\":500994,\"congestionControlLatency\":0,\"pipelineWrapperFilteredLines\":0}},\"cache\":{\"chunk\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"index\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"result\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"statsResult\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"volumeResult\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"seriesResult\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"labelResult\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"instantMetricResult\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0}},\"index\":{\"totalChunks\":0,\"postFilterChunks\":0,\"shardsDuration\":0}}}}",
+    "stderr": ""
+  },
+  "loki_query_3": {
+    "code": 0,
+    "stdout": "{\"status\":\"success\",\"data\":{\"resultType\":\"streams\",\"result\":[{\"stream\":{\"container\":\"news_wordpress\",\"detected_level\":\"error\",\"job\":\"webapp\",\"service\":\"wordpress\",\"service_name\":\"wordpress\"},\"values\":[[\"1792926427785554404\",\"172.19.0.1 - - [25/Oct/2026:11:07:07 +0000] \\\"GET /error_test.php HTTP/1.1\\\" 200 203 \\\"-\\\" \\\"curl/8.18.0\\\"\"],[\"1792925217694825423\",\"172.19.0.1 - - [25/Oct/2026:10:46:57 +0000] \\\"GET /error_test.php HTTP/1.1\\\" 200 203 \\\"-\\\" \\\"curl/8.18.0\\\"\"]]}],\"stats\":{\"summary\":{\"bytesProcessedPerSecond\":15991500,\"linesProcessedPerSecond\":182144,\"totalBytesProcessed\":56277,\"totalLinesProcessed\":641,\"execTime\":0.003519,\"queueTime\":0.000613,\"subqueries\":0,\"totalEntriesReturned\":2,\"splits\":2,\"shards\":2,\"totalPostFilterLines\":4,\"totalStructuredMetadataBytesProcessed\":32},\"querier\":{\"store\":{\"totalChunksRef\":0,\"totalChunksDownloaded\":0,\"chunksDownloadTime\":0,\"queryReferencedStructuredMetadata\":false,\"chunk\":{\"headChunkBytes\":0,\"headChunkLines\":0,\"decompressedBytes\":0,\"decompressedLines\":0,\"compressedBytes\":0,\"totalDuplicates\":0,\"postFilterLines\":0,\"headChunkStructuredMetadataBytes\":0,\"decompressedStructuredMetadataBytes\":0},\"chunkRefsFetchTime\":0,\"congestionControlLatency\":0,\"pipelineWrapperFilteredLines\":0}},\"ingester\":{\"totalReached\":2,\"totalChunksMatched\":2,\"totalBatches\":3,\"totalLinesSent\":3,\"store\":{\"totalChunksRef\":0,\"totalChunksDownloaded\":0,\"chunksDownloadTime\":0,\"queryReferencedStructuredMetadata\":false,\"chunk\":{\"headChunkBytes\":56277,\"headChunkLines\":641,\"decompressedBytes\":0,\"decompressedLines\":0,\"compressedBytes\":0,\"totalDuplicates\":0,\"postFilterLines\":4,\"headChunkStructuredMetadataBytes\":32,\"decompressedStructuredMetadataBytes\":0},\"chunkRefsFetchTime\":137725,\"congestionControlLatency\":0,\"pipelineWrapperFilteredLines\":0}},\"cache\":{\"chunk\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"index\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"result\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"statsResult\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"volumeResult\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"seriesResult\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"labelResult\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0},\"instantMetricResult\":{\"entriesFound\":0,\"entriesRequested\":0,\"entriesStored\":0,\"bytesReceived\":0,\"bytesSent\":0,\"requests\":0,\"downloadTime\":0,\"queryLengthServed\":0}},\"index\":{\"totalChunks\":0,\"postFilterChunks\":0,\"shardsDuration\":0}}}}",
+    "stderr": ""
+  },
+  "check_test_endpoints_curl": {
+    "code": 0,
+    "stdout": "HTTP/2 500 \r\r\nserver: nginx/1.31.4\r\r\ndate: Sun, 25 Oct 2026 11:08:17 GMT\r\r\ncontent-type: application/octet-stream\r\r\nHTTP/2 502 \r\r\nserver: nginx/1.31.4\r\r\ndate: Sun, 25 Oct 2026 11:08:17 GMT\r\r\ncontent-type: application/octet-stream\r\r\nHTTP/2 200 \r\r\nserver: nginx/1.31.4\r\r\ndate: Sun, 25 Oct 2026 11:08:17 GMT\r\r\ncontent-type: text/html; charset=UTF-8",
+    "stderr": ""
+  },
+  "check_test_file_on_wp": {
+    "code": 0,
+    "stdout": "-rw-rw-r-- 1 1000 1000 225 Oct 25 10:46 /var/www/html/error_test.php",
+    "stderr": ""
+  },
+  "git_log_full": {
+    "code": 0,
+    "stdout": "\u001b[?1h\u001b=\refef9cd - Student_DevOps - Sun Oct 25 17:56:54 2026 +0700 : chore: Cập nhật .git\u001b[m \bignore và hoàn thiện cấu hình Nginx\u001b[m\r\n7e51e0b - Student_DevOps - Sun Oct 25 17:55:34 2026 +0700 : docs: Hoàn thiện REA\u001b[m \bDME hướng dẫn vận hành và báo cáo cuối kỳ\u001b[m\r\nb7f07ab - Student_DevOps - Sun Oct 25 17:47:17 2026 +0700 : feat(logging): Loki \u001b[m \bvà Promtail\u001b[m\r\n5e16e02 - Student_DevOps - Sun Oct 25 17:39:14 2026 +0700 : feat(monitoring): Pr\u001b[m \bometheus và Grafana\u001b[m\r\n6ad465e - Student_DevOps - Sun Oct 25 17:34:10 2026 +0700 : feat(proxy): Nginx R\u001b[m \beverse Proxy và bảo mật HTTP\u001b[m\r\n3edf85b - Student_DevOps - Sun Oct 25 17:29:28 2026 +0700 : feat(app): Triển kha\u001b[m \bi WordPress, MySQL và phpMyAdmin với Docker Compose\u001b[m\r\n\r\u001b[K\u001b[?1l\u001b>",
+    "stderr": ""
+  },
+  "git_secrets_check": {
+    "code": 0,
+    "stdout": "+   - `MYSQL_ROOT_PASSWORD`: Mật khẩu tài khoản `root` của MySQL.\r\n+   - `MYSQL_PASSWORD`: Mật khẩu tài khoản MySQL cho ứng dụng.\r\n+   - `GRAFANA_ADMIN_PASSWORD`: Mật khẩu quản trị Grafana.\r\n+| **Grafana Dashboard** | `http://<IP_SERVER>:3000/` | HTTP :3000 | `admin` / *(Theo GRAFANA_ADMIN_PASSWORD)* |\r\n+   - Kiểm tra biến môi trường kết nối trong WordPress: đảm bảo `WORDPRESS_DB_HOST=news_mysql:3306`, tên user và password khớp với MySQL.\r\n+- **Biến môi trường linh hoạt:** Các tham số `WORDPRESS_DB_HOST`, `WORDPRESS_DB_NAME`, `WORDPRESS_DB_USER` và `WORDPRESS_DB_PASSWORD` được nạp tự động từ file `.env`.\r\n+- **Healthcheck sẵn sàng kết nối:** Sử dụng `mysqladmin ping -h localhost -u news_user -p$${MYSQL_PASSWORD}` để xác nhận MySQL đã hoàn tất nạp bộ nhớ đệm InnoDB và sẵn sàng nhận kết nối từ WordPress.\r\n+- **Phân tách cấu hình và mã nguồn:** Toàn bộ mật khẩu cơ sở dữ liệu (`MYSQL_ROOT_PASSWORD`, `MYSQL_PASSWORD`) và thông tin quản trị Grafana được tách biệt hoàn toàn vào file `.env`.\r\n+├── .env.example                # Tệp tin mẫu biến môi trường (an toàn, không chứa secret)\r\n+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}\r\n+WORDPRESS_DB_PASSWORD=ThayTheBangMatKhauUserSieuManh_2026\r\n+GRAFANA_ADMIN_PASSWORD=ThayTheBangMatKhauGrafana_2026\r\n+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}\r\n+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}\r\n+      test: [\"CMD\", \"mysqladmin\", \"ping\", \"-h\", \"localhost\", \"-u\", \"root\", \"-p${MYSQL_ROOT_PASSWORD}\"]\r\n+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}",
+    "stderr": ""
+  }
+}

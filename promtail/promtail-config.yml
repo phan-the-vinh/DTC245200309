@@ -1,0 +1,46 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+
+scrape_configs:
+  # Thu thập access log & error log từ Nginx qua volume dùng chung
+  - job_name: nginx
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: nginx
+          service: reverse-proxy
+          __path__: /var/log/nginx/*.log
+
+  # Thu thập stdout/stderr từ Docker containers (WordPress, MySQL, v.v.)
+  - job_name: docker
+    docker_sd_configs:
+      - host: unix:///var/run/docker.sock
+        refresh_interval: 5s
+    relabel_configs:
+      - source_labels: ['__meta_docker_container_name']
+        regex: '/(.*)'
+        target_label: 'container'
+      - source_labels: ['container']
+        regex: 'news_wordpress'
+        target_label: 'job'
+        replacement: 'webapp'
+      - source_labels: ['container']
+        regex: 'news_mysql'
+        target_label: 'job'
+        replacement: 'database'
+      - source_labels: ['container']
+        regex: 'news_nginx'
+        target_label: 'job'
+        replacement: 'nginx'
+      - source_labels: ['container']
+        regex: 'news_(.*)'
+        target_label: 'service'
+        replacement: '${1}'

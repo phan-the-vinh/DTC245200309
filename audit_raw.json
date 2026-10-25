@@ -1,0 +1,200 @@
+{
+  "docker_compose_config_valid": {
+    "command": "cd /home/ubuntu/trienkhaihethong && docker compose config --quiet && echo 'CONFIG_SYNTAX_VALID'",
+    "exit_code": 0,
+    "output": "CONFIG_SYNTAX_VALID\r\n",
+    "error": ""
+  },
+  "docker_compose_services": {
+    "command": "cd /home/ubuntu/trienkhaihethong && docker compose config --services",
+    "exit_code": 0,
+    "output": "mysql\r\nphpmyadmin\r\nwordpress\r\nnginx\r\nprometheus\r\nloki\r\npromtail\r\ncadvisor\r\ngrafana\r\nnode_exporter\r\n",
+    "error": ""
+  },
+  "docker_compose_volumes": {
+    "command": "cd /home/ubuntu/trienkhaihethong && docker compose config --volumes",
+    "exit_code": 0,
+    "output": "loki_data\r\nnginx_logs\r\ngrafana_data\r\nmysql_data\r\nprometheus_data\r\nwp_data\r\n",
+    "error": ""
+  },
+  "docker_compose_ps": {
+    "command": "cd /home/ubuntu/trienkhaihethong && docker compose ps -a",
+    "exit_code": 0,
+    "output": "NAME                 IMAGE                              COMMAND                  SERVICE         CREATED          STATUS                    PORTS\r\nnews_cadvisor        gcr.io/cadvisor/cadvisor:v0.49.1   \"/usr/bin/cadvisor -…\"   cadvisor        31 minutes ago   Up 31 minutes (healthy)   8080/tcp\r\nnews_grafana         grafana/grafana:11.2.0             \"/run.sh\"                grafana         31 minutes ago   Up 25 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp\r\nnews_loki            grafana/loki:3.1.1                 \"/usr/bin/loki -conf…\"   loki            26 minutes ago   Up 26 minutes             3100/tcp\r\nnews_mysql           mysql:8.0                          \"docker-entrypoint.s…\"   mysql           39 minutes ago   Up 19 minutes (healthy)   3306/tcp, 33060/tcp\r\nnews_nginx           nginx:alpine                       \"/docker-entrypoint.…\"   nginx           35 minutes ago   Up 33 minutes (healthy)   0.0.0.0:80->80/tcp, [::]:80->80/tcp, 0.0.0.0:443->443/tcp, [::]:443->443/tcp\r\nnews_node_exporter   prom/node-exporter:v1.8.2          \"/bin/node_exporter …\"   node_exporter   31 minutes ago   Up 31 minutes             9100/tcp\r\nnews_phpmyadmin      phpmyadmin:5.2                     \"/docker-entrypoint.…\"   phpmyadmin      35 minutes ago   Up 35 minutes             0.0.0.0:8081->80/tcp, [::]:8081->80/tcp\r\nnews_prometheus      prom/prometheus:v2.54.1            \"/bin/prometheus --c…\"   prometheus      31 minutes ago   Up 31 minutes             0.0.0.0:9090->9090/tcp, [::]:9090->9090/tcp\r\nnews_promtail        grafana/promtail:3.1.1             \"/usr/bin/promtail -…\"   promtail        26 minutes ago   Up 26 minutes             \r\nnews_wordpress       wordpress:6.7-apache               \"docker-entrypoint.s…\"   wordpress       33 minutes ago   Up 19 minutes (healthy)   80/tcp\r\n",
+    "error": ""
+  },
+  "disk_space": {
+    "command": "df -h / /var/lib/docker",
+    "exit_code": 0,
+    "output": "Filesystem      Size  Used Avail Use% Mounted on\r\n/dev/sda2        20G   16G  2.8G  86% /\r\n/dev/sda2        20G   16G  2.8G  86% /\r\n",
+    "error": ""
+  },
+  "docker_inspect_health": {
+    "command": "docker inspect --format '{{.Name}}: Status={{.State.Status}} Health={{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' $(docker ps -aq)",
+    "exit_code": 127,
+    "output": "/news_promtail: Status=running Health=none\r\nbash: line 2: b00e022e1855: command not found\r\nbash: line 3: cb84bf733ea1: command not found\r\nbash: line 4: f1551bb30dfd: command not found\r\nbash: line 5: ed675b7ca443: command not found\r\nbash: line 6: 15b0b997b2c2: command not found\r\nbash: line 7: 89e4b437e0c4: command not found\r\nbash: line 8: dbc9cab8f471: command not found\r\nbash: line 9: f86189fe75d3: command not found\r\nbash: line 10: f10a0fc2c5c5: command not found\r\n",
+    "error": ""
+  },
+  "docker_networks": {
+    "command": "docker network ls",
+    "exit_code": 0,
+    "output": "NETWORK ID     NAME                  DRIVER    SCOPE\r\n57c2452d507f   bridge                bridge    local\r\n756fd66a9aa0   host                  host      local\r\n914b43f033c0   news_backend_net      bridge    local\r\nd74177d829db   news_frontend_net     bridge    local\r\n63f213bafedc   news_monitoring_net   bridge    local\r\nc0299b982013   none                  null      local\r\n1b627b0199aa   php-network           bridge    local\r\n",
+    "error": ""
+  },
+  "docker_network_inspect_frontend": {
+    "command": "docker network inspect trienkhaihethong_news_frontend_net --format '{{range .Containers}}{{.Name}} ({{.IPv4Address}}) {{end}}'",
+    "exit_code": 1,
+    "output": "\r\nError response from daemon: network trienkhaihethong_news_frontend_net not found\r\n",
+    "error": ""
+  },
+  "docker_network_inspect_backend": {
+    "command": "docker network inspect trienkhaihethong_news_backend_net --format '{{range .Containers}}{{.Name}} ({{.IPv4Address}}) {{end}}'",
+    "exit_code": 1,
+    "output": "\r\nError response from daemon: network trienkhaihethong_news_backend_net not found\r\n",
+    "error": ""
+  },
+  "docker_network_inspect_monitoring": {
+    "command": "docker network inspect trienkhaihethong_news_monitoring_net --format '{{range .Containers}}{{.Name}} ({{.IPv4Address}}) {{end}}'",
+    "exit_code": 1,
+    "output": "\r\nError response from daemon: network trienkhaihethong_news_monitoring_net not found\r\n",
+    "error": ""
+  },
+  "docker_volumes": {
+    "command": "docker volume ls",
+    "exit_code": 0,
+    "output": "DRIVER    VOLUME NAME\r\nlocal     mysql_data\r\nlocal     news_grafana_data\r\nlocal     news_loki_data\r\nlocal     news_mysql_data\r\nlocal     news_nginx_logs\r\nlocal     news_prometheus_data\r\nlocal     news_wp_data\r\n",
+    "error": ""
+  },
+  "listening_ports": {
+    "command": "ss -tulpn | grep -E ':(80|443|3000|3100|3306|8080|8081|9090|9100|9080)'",
+    "exit_code": 0,
+    "output": "tcp   LISTEN 0      4096         0.0.0.0:8081      0.0.0.0:*          \r\ntcp   LISTEN 0      4096         0.0.0.0:3000      0.0.0.0:*          \r\ntcp   LISTEN 0      4096         0.0.0.0:443       0.0.0.0:*          \r\ntcp   LISTEN 0      4096         0.0.0.0:80        0.0.0.0:*          \r\ntcp   LISTEN 0      4096         0.0.0.0:9090      0.0.0.0:*          \r\ntcp   LISTEN 0      4096            [::]:8081         [::]:*          \r\ntcp   LISTEN 0      4096            [::]:3000         [::]:*          \r\ntcp   LISTEN 0      4096            [::]:443          [::]:*          \r\ntcp   LISTEN 0      4096            [::]:80           [::]:*          \r\ntcp   LISTEN 0      4096            [::]:9090         [::]:*          \r\n",
+    "error": ""
+  },
+  "container_user": {
+    "command": "docker inspect --format '{{.Name}}: User=\"{{.Config.User}}\"' $(docker ps -q)",
+    "exit_code": 2,
+    "output": "bash: -c: line 1: unexpected EOF while looking for matching `''\r\n",
+    "error": ""
+  },
+  "container_privileges": {
+    "command": "docker inspect --format '{{.Name}}: Privileged={{.HostConfig.Privileged}}, CapAdd={{.HostConfig.CapAdd}}, CapDrop={{.HostConfig.CapDrop}}, SecurityOpt={{.HostConfig.SecurityOpt}}' $(docker ps -q)",
+    "exit_code": 127,
+    "output": "/news_promtail: Privileged=false, CapAdd=[], CapDrop=[], SecurityOpt=[]\r\nbash: line 2: b00e022e1855: command not found\r\nbash: line 3: cb84bf733ea1: command not found\r\nbash: line 4: f1551bb30dfd: command not found\r\nbash: line 5: ed675b7ca443: command not found\r\nbash: line 6: 15b0b997b2c2: command not found\r\nbash: line 7: 89e4b437e0c4: command not found\r\nbash: line 8: dbc9cab8f471: command not found\r\nbash: line 9: f86189fe75d3: command not found\r\nbash: line 10: f10a0fc2c5c5: command not found\r\n",
+    "error": ""
+  },
+  "docker_socket_mounts": {
+    "command": "docker inspect --format '{{.Name}}: {{range .Mounts}}{{if eq .Destination \"/var/run/docker.sock\"}}{{.Source}} RW={{.RW}}{{end}}{{end}}' $(docker ps -q)",
+    "exit_code": 2,
+    "output": "bash: -c: line 1: unexpected EOF while looking for matching `''\r\n",
+    "error": ""
+  },
+  "file_permissions": {
+    "command": "ls -la /home/ubuntu/trienkhaihethong/.env /home/ubuntu/trienkhaihethong/nginx/ssl/ /home/ubuntu/trienkhaihethong/docker-compose.yml",
+    "exit_code": 0,
+    "output": "-rw------- 1 ubuntu ubuntu 1016 Oct 25 17:40 /home/ubuntu/trienkhaihethong/.env\r\n-rw-rw-r-- 1 ubuntu ubuntu 5819 Oct 25 17:40 /home/ubuntu/trienkhaihethong/docker-compose.yml\r\n\r\n/home/ubuntu/trienkhaihethong/nginx/ssl/:\r\ntotal 16\r\ndrwxrwxr-x 2 ubuntu ubuntu 4096 Oct 25 17:30 .\r\ndrwxrwxr-x 4 ubuntu ubuntu 4096 Oct 25 17:30 ..\r\n-rw-rw-r-- 1 ubuntu ubuntu 1354 Oct 25 17:40 selfsigned.crt\r\n-rw------- 1 ubuntu ubuntu 1704 Oct 25 17:30 selfsigned.key\r\n",
+    "error": ""
+  },
+  "curl_http_redirect": {
+    "command": "curl -s -I http://localhost/",
+    "exit_code": 0,
+    "output": "HTTP/1.1 301 Moved Permanently\r\r\n\u001b[1mServer\u001b[0m: nginx/1.31.4\r\r\n\u001b[1mDate\u001b[0m: Sun, 25 Oct 2026 11:07:07 GMT\r\r\n\u001b[1mContent-Type\u001b[0m: text/html\r\r\n\u001b[1mContent-Length\u001b[0m: 169\r\r\n\u001b[1mConnection\u001b[0m: keep-alive\r\r\n\u001b[1mLocation\u001b[0m: \u001b]8;;https://localhost/\u001b\\https://localhost/\r\r\n\u001b]8;;\u001b\\\r\r\n",
+    "error": ""
+  },
+  "curl_https_headers": {
+    "command": "curl -k -s -I https://localhost/",
+    "exit_code": 0,
+    "output": "HTTP/2 200 \r\r\n\u001b[1mserver\u001b[0m: nginx/1.31.4\r\r\n\u001b[1mdate\u001b[0m: Sun, 25 Oct 2026 11:07:07 GMT\r\r\n\u001b[1mcontent-type\u001b[0m: text/html; charset=UTF-8\r\r\n\u001b[1mvary\u001b[0m: Accept-Encoding\r\r\n\u001b[1mx-powered-by\u001b[0m: PHP/8.2.28\r\r\n\u001b[1mlink\u001b[0m: <https://192.168.177.128/index.php?rest_route=/>; rel=\"https://api.w.org/\"\r\r\n\u001b[1mx-content-type-options\u001b[0m: nosniff\r\r\n\u001b[1mx-frame-options\u001b[0m: SAMEORIGIN\r\r\n\u001b[1mx-xss-protection\u001b[0m: 1; mode=block\r\r\n\u001b[1mreferrer-policy\u001b[0m: strict-origin-when-cross-origin\r\r\n\r\r\n",
+    "error": ""
+  },
+  "test_endpoints_nginx": {
+    "command": "curl -k -s -o /dev/null -w 'error500=%{http_code}\n' https://localhost/error500; curl -k -s -o /dev/null -w 'error502=%{http_code}\n' https://localhost/error502; curl -k -s -o /dev/null -w 'error_test_php=%{http_code}\n' https://localhost/error_test.php",
+    "exit_code": 0,
+    "output": "error500=500\r\nerror502=502\r\nerror_test_php=200\r\n",
+    "error": ""
+  },
+  "prometheus_targets_api": {
+    "command": "curl -s http://localhost:9090/api/v1/targets | jq '{activeTargets: [.data.activeTargets[] | {job: .labels.job, instance: .labels.instance, health: .health, lastError: .lastError}]}'",
+    "exit_code": 0,
+    "output": "\u001b[1;39m{\u001b[0m\r\n  \u001b[1;34m\"activeTargets\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m[\u001b[0m\r\n    \u001b[1;39m{\u001b[0m\r\n      \u001b[1;34m\"job\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"cadvisor\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"instance\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"cadvisor:8080\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"health\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"up\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"lastError\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"\"\u001b[0m\r\n    \u001b[1;39m}\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;39m{\u001b[0m\r\n      \u001b[1;34m\"job\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"node_exporter\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"instance\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"node_exporter:9100\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"health\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"up\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"lastError\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"\"\u001b[0m\r\n    \u001b[1;39m}\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;39m{\u001b[0m\r\n      \u001b[1;34m\"job\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"prometheus\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"instance\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"localhost:9090\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"health\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"up\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"lastError\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"\"\u001b[0m\r\n    \u001b[1;39m}\u001b[0m\r\n  \u001b[1;39m]\u001b[0m\r\n\u001b[1;39m}\u001b[0m\r\n",
+    "error": ""
+  },
+  "prometheus_promql_up": {
+    "command": "curl -s 'http://localhost:9090/api/v1/query?query=up' | jq '.data.result[] | {metric: .metric, value: .value}'",
+    "exit_code": 0,
+    "output": "\u001b[1;39m{\u001b[0m\r\n  \u001b[1;34m\"metric\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m{\u001b[0m\r\n    \u001b[1;34m\"__name__\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"up\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"instance\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"node_exporter:9100\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"job\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"node_exporter\"\u001b[0m\r\n  \u001b[1;39m}\u001b[0m\u001b[1;39m,\u001b[0m\r\n  \u001b[1;34m\"value\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m[\u001b[0m\r\n    \u001b[0;39m1792926428.247\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[0;32m\"1\"\u001b[0m\r\n  \u001b[1;39m]\u001b[0m\r\n\u001b[1;39m}\u001b[0m\r\n\u001b[1;39m{\u001b[0m\r\n  \u001b[1;34m\"metric\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m{\u001b[0m\r\n    \u001b[1;34m\"__name__\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"up\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"instance\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"localhost:9090\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"job\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"prometheus\"\u001b[0m\r\n  \u001b[1;39m}\u001b[0m\u001b[1;39m,\u001b[0m\r\n  \u001b[1;34m\"value\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m[\u001b[0m\r\n    \u001b[0;39m1792926428.247\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[0;32m\"1\"\u001b[0m\r\n  \u001b[1;39m]\u001b[0m\r\n\u001b[1;39m}\u001b[0m\r\n\u001b[1;39m{\u001b[0m\r\n  \u001b[1;34m\"metric\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m{\u001b[0m\r\n    \u001b[1;34m\"__name__\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"up\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"instance\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"cadvisor:8080\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"job\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"cadvisor\"\u001b[0m\r\n  \u001b[1;39m}\u001b[0m\u001b[1;39m,\u001b[0m\r\n  \u001b[1;34m\"value\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m[\u001b[0m\r\n    \u001b[0;39m1792926428.247\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[0;32m\"1\"\u001b[0m\r\n  \u001b[1;39m]\u001b[0m\r\n\u001b[1;39m}\u001b[0m\r\n",
+    "error": ""
+  },
+  "grafana_datasources_api": {
+    "command": "curl -s -u admin:Grafana_Admin2026! http://localhost:3000/api/datasources | jq '[.[] | {name: .name, type: .type, url: .url, isDefault: .isDefault}]'",
+    "exit_code": 0,
+    "output": "\u001b[1;39m[\u001b[0m\r\n  \u001b[1;39m{\u001b[0m\r\n    \u001b[1;34m\"name\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"Loki\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"type\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"loki\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"url\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"http://loki:3100\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"isDefault\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;39mfalse\u001b[0m\r\n  \u001b[1;39m}\u001b[0m\u001b[1;39m,\u001b[0m\r\n  \u001b[1;39m{\u001b[0m\r\n    \u001b[1;34m\"name\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"Prometheus\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"type\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"prometheus\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"url\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"http://prometheus:9090\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"isDefault\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;39mtrue\u001b[0m\r\n  \u001b[1;39m}\u001b[0m\r\n\u001b[1;39m]\u001b[0m\r\n",
+    "error": ""
+  },
+  "grafana_dashboards_api": {
+    "command": "curl -s -u admin:Grafana_Admin2026! http://localhost:3000/api/search | jq '[.[] | {title: .title, type: .type, url: .url}]'",
+    "exit_code": 0,
+    "output": "\u001b[1;39m[\u001b[0m\r\n  \u001b[1;39m{\u001b[0m\r\n    \u001b[1;34m\"title\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"DevOps Overview\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"type\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"dash-folder\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"url\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"/dashboards/f/eg2aakf5kmccgb/devops-overview\"\u001b[0m\r\n  \u001b[1;39m}\u001b[0m\u001b[1;39m,\u001b[0m\r\n  \u001b[1;39m{\u001b[0m\r\n    \u001b[1;34m\"title\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"DevOps System & Container Overview\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"type\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"dash-db\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"url\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"/d/devops-overview/devops-system-and-container-overview\"\u001b[0m\r\n  \u001b[1;39m}\u001b[0m\r\n\u001b[1;39m]\u001b[0m\r\n",
+    "error": ""
+  },
+  "loki_ready_api": {
+    "command": "curl -s -i http://localhost:3100/ready",
+    "exit_code": 7,
+    "output": "",
+    "error": ""
+  },
+  "loki_labels_api": {
+    "command": "curl -s http://localhost:3100/loki/api/v1/labels | jq .",
+    "exit_code": 0,
+    "output": "",
+    "error": ""
+  },
+  "loki_query_1": {
+    "command": "curl -s -G -H 'Accept: application/json' --data-urlencode 'query={job=\"nginx\"}' --data-urlencode 'limit=2' http://localhost:3100/loki/api/v1/query_range | jq '{status: .status, resultCount: (.data.result | length)}'",
+    "exit_code": 2,
+    "output": "bash: -c: line 1: syntax error near unexpected token `('\r\nbash: -c: line 1: `bash -c 'curl -s -G -H \\'Accept: application/json\\' --data-urlencode \\'query={job=\"nginx\"}\\' --data-urlencode \\'limit=2\\' http://localhost:3100/loki/api/v1/query_range | jq \\'{status: .status, resultCount: (.data.result | length)}\\'''\r\n",
+    "error": ""
+  },
+  "loki_query_2": {
+    "command": "curl -s -G -H 'Accept: application/json' --data-urlencode 'query={job=\"nginx\"} |~ \"HTTP/[0-9.]+\\\" 5[0-9][0-9]\"' --data-urlencode 'limit=2' http://localhost:3100/loki/api/v1/query_range | jq '{status: .status, resultCount: (.data.result | length)}'",
+    "exit_code": 2,
+    "output": "bash: -c: line 1: unexpected EOF while looking for matching `\"'\r\n",
+    "error": ""
+  },
+  "loki_query_3": {
+    "command": "curl -s -G -H 'Accept: application/json' --data-urlencode 'query={job=\"webapp\"} |~ \"(?i)(error|exception|failed)\"' --data-urlencode 'limit=2' http://localhost:3100/loki/api/v1/query_range | jq '{status: .status, resultCount: (.data.result | length)}'",
+    "exit_code": 2,
+    "output": "bash: -c: line 1: syntax error near unexpected token `('\r\nbash: -c: line 1: `bash -c 'curl -s -G -H \\'Accept: application/json\\' --data-urlencode \\'query={job=\"webapp\"} |~ \"(?i)(error|exception|failed)\"\\' --data-urlencode \\'limit=2\\' http://localhost:3100/loki/api/v1/query_range | jq \\'{status: .status, resultCount: (.data.result | length)}\\'''\r\n",
+    "error": ""
+  },
+  "git_status": {
+    "command": "cd /home/ubuntu/trienkhaihethong && git status",
+    "exit_code": 0,
+    "output": "On branch main\r\nnothing to commit, working tree clean\r\n",
+    "error": ""
+  },
+  "git_log": {
+    "command": "cd /home/ubuntu/trienkhaihethong && git log --oneline --graph",
+    "exit_code": 0,
+    "output": "\u001b[?1h\u001b=\r* \u001b[33mefef9cd\u001b[m\u001b[33m (\u001b[m\u001b[1;36mHEAD\u001b[m\u001b[33m -> \u001b[m\u001b[1;32mmain\u001b[m\u001b[33m)\u001b[m chore: Cập nhật .gitignore và hoàn thiện cấu hình Nginx\u001b[m\r\n* \u001b[33m7e51e0b\u001b[m docs: Hoàn thiện README hướng dẫn vận hành và báo cáo cuối kỳ\u001b[m\r\n* \u001b[33mb7f07ab\u001b[m feat(logging): Loki và Promtail\u001b[m\r\n* \u001b[33m5e16e02\u001b[m feat(monitoring): Prometheus và Grafana\u001b[m\r\n* \u001b[33m6ad465e\u001b[m feat(proxy): Nginx Reverse Proxy và bảo mật HTTP\u001b[m\r\n* \u001b[33m3edf85b\u001b[m feat(app): Triển khai WordPress, MySQL và phpMyAdmin với Docker Compos\u001b[m \b\u001b[33m\u001b[me\u001b[m\r\n\r\u001b[K\u001b[?1l\u001b>",
+    "error": ""
+  },
+  "git_remotes": {
+    "command": "cd /home/ubuntu/trienkhaihethong && git remote -v",
+    "exit_code": 0,
+    "output": "",
+    "error": ""
+  },
+  "git_tracked_files": {
+    "command": "cd /home/ubuntu/trienkhaihethong && git ls-files",
+    "exit_code": 0,
+    "output": ".env.example\r\n.gitignore\r\nREADME.md\r\ndocker-compose.yml\r\ngrafana/dashboards/system-overview.json\r\ngrafana/provisioning/dashboards/dashboards.yml\r\ngrafana/provisioning/datasources/loki.yml\r\ngrafana/provisioning/datasources/prometheus.yml\r\nloki/loki-config.yml\r\nnginx/conf.d/default.conf\r\nnginx/nginx.conf\r\nnginx/ssl/selfsigned.crt\r\nprometheus/prometheus.yml\r\npromtail/promtail-config.yml\r\nreport/BAO_CAO_CUOI_KY.docx\r\nreport/BAO_CAO_CUOI_KY.md\r\n",
+    "error": ""
+  },
+  "git_history_check_secrets": {
+    "command": "cd /home/ubuntu/trienkhaihethong && git log -p | grep -E '(\\.env|BEGIN RSA PRIVATE KEY|PASSWORD|password|SECRET)' | grep -v 'E_ALL' | grep -v 'MYSQL_ROOT_PASSWORD=' | head -n 20",
+    "exit_code": 0,
+    "output": "+File `.env` chứa toàn bộ mật khẩu, thông tin kết nối và cấu hình bảo mật. **Tuyệt đối không commit file `.env` lên Git.**\r\n+   cp .env.example .env\r\n+2. Thiết lập quyền bảo vệ file `.env` (chỉ người dùng sở hữu mới có quyền đọc):\r\n+   chmod 600 .env\r\n+3. Xem xét và chỉnh sửa các tham số trong file `.env`:\r\n+   - `MYSQL_ROOT_PASSWORD`: Mật khẩu tài khoản `root` của MySQL.\r\n+   - `MYSQL_PASSWORD`: Mật khẩu tài khoản MySQL cho ứng dụng.\r\n+   - `GRAFANA_ADMIN_PASSWORD`: Mật khẩu quản trị Grafana.\r\n+| **Grafana Dashboard** | `http://<IP_SERVER>:3000/` | HTTP :3000 | `admin` / *(Theo GRAFANA_ADMIN_PASSWORD)* |\r\n+   - Kiểm tra biến môi trường kết nối trong WordPress: đảm bảo `WORDPRESS_DB_HOST=news_mysql:3306`, tên user và password khớp với MySQL.\r\n+- **Biến môi trường linh hoạt:** Các tham số `WORDPRESS_DB_HOST`, `WORDPRESS_DB_NAME`, `WORDPRESS_DB_USER` và `WORDPRESS_DB_PASSWORD` được nạp tự động từ file `.env`.\r\n+- **Healthcheck sẵn sàng kết nối:** Sử dụng `mysqladmin ping -h localhost -u news_user -p$${MYSQL_PASSWORD}` để xác nhận MySQL đã hoàn tất nạp bộ nhớ đệm InnoDB và sẵn sàng nhận kết nối từ WordPress.\r\n+- **Phân tách cấu hình và mã nguồn:** Toàn bộ mật khẩu cơ sở dữ liệu (`MYSQL_ROOT_PASSWORD`, `MYSQL_PASSWORD`) và thông tin quản trị Grafana được tách biệt hoàn toàn vào file `.env`.\r\n+- **Bảo vệ mã nguồn Git:** File `.gitignore` được cấu hình chặt chẽ để loại trừ `.env`, `*.key`, `*.crt` và các dữ liệu runtime.\r\n+- **Phân quyền tập tin trên Linux:** File `.env` và khóa bảo mật SSL `selfsigned.key` được gán quyền `chmod 600` (chỉ cho phép user `ubuntu` sở hữu tệp có quyền đọc và ghi).\r\n+├── .env.example                # Tệp tin mẫu biến môi trường (an toàn, không chứa secret)\r\n+.env\r\n+5. **Về mặt Quản trị An toàn (Hardening) và Quy trình:** Đã áp dụng phân tách mạng đa tầng (Network Segmentation), giới hạn đặc quyền container, bảo vệ tuyệt đối thông tin nhạy cảm qua `.env` và quản lý phiên bản mã nguồn bài bản theo chuẩn Git Conventional Commits.\r\n       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}\r\n+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}\r\n",
+    "error": ""
+  }
+}

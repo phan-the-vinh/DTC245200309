@@ -1,0 +1,772 @@
+# BÁO CÁO BÀI TẬP CUỐI KỲ
+## HỌC PHẦN: TRIỂN KHAI VÀ QUẢN TRỊ HỆ THỐNG PHẦN MỀM
+
+---
+
+**ĐỀ TÀI:**
+### THIẾT KẾ, TRIỂN KHAI VÀ VẬN HÀNH HỆ THỐNG CỔNG THÔNG TIN TIN TỨC TRÊN NỀN TẢNG CONTAINER VỚI DOCKER COMPOSE, NGINX REVERSE PROXY, PROMETHEUS, GRAFANA, LOKI VÀ PROMTAIL
+
+---
+
+**THÔNG TIN HỌC VIÊN / SINH VIÊN:**
+- **Cơ sở đào tạo:** [TRƯỜNG ĐẠI HỌC - VIỆN ĐÀO TẠO PLACEHOLDER]
+- **Khoa / Bộ môn:** Khoa Công Nghệ Thông Tin / Bộ môn Mạng và Hệ thống Thông tin
+- **Họ và tên sinh viên:** `[NGUYỄN VĂN A - PLACEHOLDER]`
+- **Mã số sinh viên (MSSV):** `[MSSV_PLACEHOLDER]`
+- **Lớp / Khóa học:** `[LỚP_PLACEHOLDER]`
+- **Giảng viên hướng dẫn:** `[GIẢNG VIÊN HƯỚNG DẪN PLACEHOLDER]`
+- **Năm thực hiện:** 2026
+
+---
+
+\newpage
+
+## MỤC LỤC CHI TIẾT
+
+- **LỜI CẢM ƠN VÀ LỜI NÓI ĐẦU**
+- **DANH MỤC TỪ VIẾT TẮT**
+- **DANH MỤC BẢNG BIỂU VÀ HÌNH VẼ**
+- **CHƯƠNG 1: TỔNG QUAN ĐỀ TÀI VÀ KIẾN TRÚC HỆ THỐNG**
+  - 1.1. Bối cảnh và mục tiêu kỹ thuật
+  - 1.2. Phân tích yêu cầu hệ thống và ngăn xếp công nghệ (Technology Stack)
+  - 1.3. Mô hình kiến trúc phân tầng tổng thể (System Architecture)
+  - 1.4. Thiết kế phân vùng mạng Docker và cô lập dịch vụ (Network Segmentation)
+  - 1.5. Thiết kế cơ chế lưu trữ dữ liệu bền vững (Volume Persistence Strategy)
+- **CHƯƠNG 2: TRIỂN KHAI CỔNG THÔNG TIN, CƠ SỞ DỮ LIỆU VÀ NGINX REVERSE PROXY**
+  - 2.1. Triển khai ứng dụng Web WordPress
+  - 2.2. Triển khai Hệ quản trị Cơ sở dữ liệu MySQL 8.0
+  - 2.3. Triển khai Công cụ Quản trị CSDL trực quan phpMyAdmin
+  - 2.4. Cấu hình Nginx Reverse Proxy và SSL/TLS Offloading
+  - 2.5. Cấu hình các tiêu chuẩn An toàn HTTP (Security Headers)
+  - 2.6. Xử lý đường dẫn và tham số Proxy Header cho WordPress
+- **CHƯƠNG 3: HỆ THỐNG GIÁM SÁT HIỆU NĂNG VỚI PROMETHEUS VÀ GRAFANA**
+  - 3.1. Tổng quan mô hình giám sát Pull-based Metrics
+  - 3.2. Thu thập chỉ số tài nguyên Host với Node Exporter
+  - 3.3. Thu thập chỉ số hiệu năng Container với cAdvisor
+  - 3.4. Cấu hình Prometheus Scrape Targets và chu kỳ thu thập
+  - 3.5. Trực quan hóa dữ liệu với Grafana và Provisioning tự động
+- **CHƯƠNG 4: HỆ THỐNG THU THẬP VÀ PHÂN TÍCH NHẬT KÝ (LOGS) VỚI LOKI VÀ PROMTAIL**
+  - 4.1. Kiến trúc hệ thống tập trung nhật ký với Grafana Loki
+  - 4.2. Promtail Log Shipper: Cơ chế quét Docker Socket và Nginx Log Volume
+  - 4.3. Thiết kế hệ thống nhãn (Labels) khoa học, tối ưu hiệu năng
+  - 4.4. Tích hợp Loki Datasource vào Grafana
+  - 4.5. Phân tích 3 kịch bản truy vấn LogQL thực tế và kết quả kiểm thử
+- **CHƯƠNG 5: ĐÁNH GIÁ AN TOÀN THÔNG TIN VÀ GIA CỐ HỆ THỐNG (SYSTEM HARDENING)**
+  - 5.1. Áp dụng nguyên tắc đặc quyền tối thiểu (Least Privilege)
+  - 5.2. Kiểm soát bề mặt tấn công: Giới hạn Port Exposure
+  - 5.3. Quản lý bí mật (Secrets Management) và bảo vệ file cấu hình
+  - 5.4. Đánh giá trạng thái Tường lửa Host OS (UFW/Iptables)
+  - 5.5. Thiết lập cơ chế kiểm tra sức khỏe tự động (Docker Healthchecks)
+- **CHƯƠNG 6: QUY TRÌNH QUẢN LÝ MÃ NGUỒN GIT VÀ LỊCH SỬ PHIÊN BẢN**
+  - 6.1. Cấu trúc kho mã nguồn và loại trừ rò rỉ dữ liệu qua .gitignore
+  - 6.2. Quy chuẩn thông điệp Commit (Conventional Commits)
+  - 6.3. Chi tiết lịch sử các Commit triển khai thực tế
+  - 6.4. Tài liệu hướng dẫn vận hành hệ thống (README.md)
+- **CHƯƠNG 7: KẾT QUẢ KIỂM THỬ TÍCH HỢP TOÀN DIỆN (INTEGRATION TESTING)**
+  - 7.1. Kiểm thử tính toàn vẹn và phản hồi của Ứng dụng Web
+  - 7.2. Kiểm thử Reverse Proxy, chuyển hướng HTTP sang HTTPS và Security Headers
+  - 7.3. Kiểm thử tính bền vững của Cơ sở dữ liệu sau chu kỳ Khởi động lại
+  - 7.4. Kiểm thử trạng thái Targets và Thu thập Metrics của Prometheus
+  - 7.5. Kiểm thử Khả năng Truy vấn Nhật ký Thực tế của Loki
+- **CHƯƠNG 8: HẠN CHẾ THỰC TẾ VÀ HƯỚNG PHÁT TRIỂN**
+  - 8.1. Các hạn chế kỹ thuật trong môi trường thử nghiệm
+  - 8.2. Đề xuất kiến trúc mở rộng trong môi trường Doanh nghiệp (Enterprise Production)
+- **KẾT LUẬN**
+- **TÀI LIỆU THAM KHẢO**
+
+---
+
+\newpage
+
+## DANH MỤC TỪ VIẾT TẮT
+
+| Viết tắt | Từ đầy đủ tiếng Anh | Ý nghĩa chuyên ngành |
+| :--- | :--- | :--- |
+| **CA** | Certificate Authority | Tổ chức phát hành chứng chỉ số |
+| **CI/CD** | Continuous Integration / Continuous Deployment | Tích hợp liên tục và Triển khai liên tục |
+| **CMS** | Content Management System | Hệ thống quản trị nội dung website |
+| **CPU** | Central Processing Unit | Bộ vi xử lý trung tâm |
+| **CSP** | Content Security Policy | Chính sách bảo mật nội dung HTTP |
+| **DB / DBMS** | Database / Database Management System | Cơ sở dữ liệu / Hệ quản trị cơ sở dữ liệu |
+| **HSTS** | HTTP Strict Transport Security | Cơ chế ép buộc sử dụng HTTPS |
+| **HTTP / HTTPS** | Hypertext Transfer Protocol (Secure) | Giao thức truyền tải siêu văn bản (bảo mật) |
+| **IP** | Internet Protocol | Giao thức mạng Internet |
+| **LTS** | Long Term Support | Phiên bản hỗ trợ dài hạn |
+| **OS** | Operating System | Hệ điều hành |
+| **RAM** | Random Access Memory | Bộ nhớ truy cập ngẫu nhiên |
+| **RDBMS** | Relational Database Management System | Hệ quản trị cơ sở dữ liệu quan hệ |
+| **SSL / TLS** | Secure Sockets Layer / Transport Layer Security | Giao thức mã hóa dữ liệu truyền tải |
+| **TSDB** | Time Series Database | Cơ sở dữ liệu chuỗi thời gian |
+| **UFW** | Uncomplicated Firewall | Công cụ quản trị tường lửa đơn giản trên Ubuntu |
+| **URI / URL** | Uniform Resource Identifier / Locator | Định danh / Địa chỉ tài nguyên thống nhất |
+
+---
+
+\newpage
+
+## DANH MỤC BẢNG BIỂU VÀ HÌNH VẼ
+
+### Danh mục Bảng biểu
+- Bảng 1.1: Danh mục dịch vụ và phân bổ tài nguyên cổng mạng (Port Mapping).
+- Bảng 1.2: Ma trận phân vùng mạng Docker (Docker Network Segmentation Matrix).
+- Bảng 2.1: Danh mục các HTTP Security Headers được cấu hình trên Nginx.
+- Bảng 3.1: Danh mục các Scrape Targets được Prometheus giám sát.
+- Bảng 4.1: Danh mục cấu trúc nhãn (Labels) được thiết lập cho Promtail.
+- Bảng 4.2: Kết quả thực thi 3 truy vấn LogQL thực tế.
+- Bảng 6.1: Bảng tổng hợp lịch sử các Git Commits của dự án.
+- Bảng 7.1: Bảng ma trận kết quả kiểm thử tích hợp toàn diện (Integration Test Matrix).
+
+### Danh mục Hình vẽ
+- Hình 1.1: Sơ đồ kiến trúc tổng thể của hệ thống Cổng thông tin (System Architecture).
+- Hình 7.1: Giao diện Cổng thông tin tin tức WordPress hiển thị qua HTTPS (01_wordpress.png).
+- Hình 7.2: Giao diện đăng nhập phpMyAdmin qua Reverse Proxy (02_phpmyadmin.png).
+- Hình 7.3: Danh sách các Scrape Targets trong Prometheus đạt trạng thái UP 100% (03_prometheus_targets.png).
+- Hình 7.4: Bảng điều khiển Grafana Overview hiển thị số liệu hiệu năng thực tế (04_grafana_dashboard.png).
+- Hình 7.5: Kết quả truy vấn LogQL {job="nginx"} trên Grafana Explore (05_loki_logql.png).
+- Hình 7.6: Trạng thái 10 container dịch vụ của dự án qua lệnh docker compose ps (06_docker_compose_ps.png).
+
+---
+
+\newpage
+
+# CHƯƠNG 1: TỔNG QUAN ĐỀ TÀI VÀ KIẾN TRÚC HỆ THỐNG
+
+## 1.1. Bối cảnh và mục tiêu kỹ thuật
+
+Trong kỷ nguyên chuyển đổi số và phát triển phần mềm hiện đại, việc vận hành một hệ thống website đòi hỏi không chỉ tính ổn định của mã nguồn ứng dụng mà còn phụ thuộc chặt chẽ vào năng lực của hạ tầng triển khai. Một hệ thống hiện đại phải đáp ứng các tiêu chuẩn khắt khe về:
+1. **Khả năng đóng gói và tính di động (Portability):** Toàn bộ các thành phần phần mềm phải được chuẩn hóa môi trường thực thi, loại bỏ hoàn toàn hiện tượng *"nó chạy trên máy tôi nhưng lỗi trên máy chủ"*.
+2. **An toàn thông tin đa tầng (Defense in Depth):** Bảo vệ ứng dụng khỏi các cuộc tấn công phổ biến, phân tách mạng nội bộ, giấu kín dịch vụ cơ sở dữ liệu và triển khai mã hóa kênh truyền (HTTPS).
+3. **Khả năng quan sát toàn diện (Full-stack Observability):** Đội ngũ quản trị hệ thống (SysAdmin/DevOps) phải có khả năng theo dõi tức thời hiệu năng phần cứng, mức tiêu thụ tài nguyên của container, và phân tích sâu các bản ghi nhật ký (logs) tập trung để phát hiện sự cố trước khi người dùng bị ảnh hưởng.
+
+Học phần **Triển khai và Quản trị Hệ thống Phần mềm** đặt ra yêu cầu xây dựng một hệ thống hoàn chỉnh phục vụ bài toán Cổng thông tin tin tức công nghệ. Hệ thống không chỉ dừng lại ở việc dựng một trang web đơn lẻ, mà phải xây dựng một giải pháp hạ tầng đồng bộ theo chuẩn DevOps bao gồm: Ứng dụng Web (WordPress), Cơ sở dữ liệu (MySQL 8.0), Quản trị CSDL (phpMyAdmin), Reverse Proxy và SSL Termination (Nginx), Hệ thống Giám sát Metrics (Prometheus, Node Exporter, cAdvisor, Grafana) và Hệ thống Quản trị Nhật ký tập trung (Loki, Promtail).
+
+## 1.2. Phân tích yêu cầu hệ thống và ngăn xếp công nghệ (Technology Stack)
+
+Hệ thống được thiết kế và triển khai trực tiếp trên máy chủ ảo **Ubuntu Linux 26.04 LTS (x86_64)** với cấu hình phần cứng:
+- **CPU:** 4 vCPU ảo hóa.
+- **RAM:** 4.0 GB khả dụng.
+- **Ổ đĩa cứng:** 40 GB NVMe/SSD.
+- **Công nghệ ảo hóa container:** Docker Engine v24.x+ và Docker Compose v2.x plugin.
+
+Ngăn xếp công nghệ được lựa chọn một cách bài bản, đảm bảo tính tương thích và hiệu năng tối ưu:
+- **Lớp Cổng giao tiếp & Bảo mật (Gateway/Proxy Layer):** `nginx:1.27-alpine` được lựa chọn nhờ dung lượng siêu nhẹ (< 50MB), hiệu năng xử lý đồng thời (concurrency) vượt trội, hỗ trợ HTTP/2, SSL Offloading và khả năng chèn HTTP Security Headers mạnh mẽ.
+- **Lớp Ứng dụng Web (Application Layer):** `wordpress:6.7-apache` cung cấp hệ thống quản trị nội dung linh hoạt, chuẩn hóa cho đề tài cổng thông tin, tích hợp sẵn module kết nối MySQL và xử lý nội dung động.
+- **Lớp Cơ sở dữ liệu (Database Layer):** `mysql:8.0` đảm bảo tính toàn vẹn dữ liệu giao dịch ACID, tối ưu hóa bộ nhớ đệm InnoDB và hỗ trợ xác thực an toàn.
+- **Lớp Quản trị CSDL (Database Admin Tool):** `phpmyadmin/phpmyadmin:5.2` phục vụ công tác quản trị, truy vấn và sao lưu dữ liệu nhanh chóng qua giao diện Web trực quan.
+- **Lớp Giám sát Chỉ số (Metrics Monitoring):** `prom/prometheus:v2.54.1` (Time-Series DB) kết hợp với `prom/node-exporter:v1.8.2` (giám sát máy chủ Host) và `gcr.io/cadvisor/cadvisor:v0.49.1` (giám sát Container runtime).
+- **Lớp Trực quan hóa (Visualization):** `grafana/grafana:11.2.0` đóng vai trò trung tâm hiển thị bảng điều khiển hợp nhất cho cả Metrics và Logs.
+- **Lớp Quản lý Nhật ký tập trung (Centralized Logging):** `grafana/loki:3.1.1` (lưu trữ và lập chỉ mục metadata logs) kết hợp với `grafana/promtail:3.1.1` (thu thập log thời gian thực từ Docker Engine socket).
+
+## 1.3. Mô hình kiến trúc phân tầng tổng thể (System Architecture)
+
+Hệ thống được tổ chức theo kiến trúc phân tầng rõ ràng (Multi-tier Architecture). Toàn bộ luồng dữ liệu của người dùng bên ngoài đều bắt buộc phải đi qua Reverse Proxy Nginx, loại bỏ hoàn toàn khả năng người dùng tiếp cận trực tiếp các cổng nội bộ của các container dịch vụ bên trong.
+
+```
++-------------------------------------------------------------------------------+
+|                            NGƯỜI DÙNG / TRÌNH DUYỆT                           |
++-------------------------------------------------------------------------------+
+                                        |
+                  HTTP: 80 (Chuyển hướng 301) / HTTPS: 443
+                                        |
+                                        v
++-------------------------------------------------------------------------------+
+|                      NGINX REVERSE PROXY (news_nginx)                         |
+|   - SSL/TLS Termination (Cấp chứng chỉ mã hóa dữ liệu)                        |
+|   - Security Headers (nosniff, SAMEORIGIN, strict-origin-when-cross-origin)   |
+|   - Rate Limiting / Proxy Buffering / Client Headers Injection                |
++-------------------------------------------------------------------------------+
+           |                                                      |
+           | / (Proxy Pass)                                       | /pma/ (Proxy Pass)
+           v                                                      v
++-------------------------+                           +-------------------------+
+|  WORDPRESS APPLICATION  |                           |     PHPMYADMIN WEB UI   |
+|    (news_wordpress)     |                           |    (news_phpmyadmin)    |
++-------------------------+                           +-------------------------+
+           |                                                      |
+           +--------------------------+---------------------------+
+                                      |
+                                      | MySQL Port :3306 (Internal Only)
+                                      v
+                      +---------------------------------+
+                      |    MYSQL 8.0 DATABASE ENGINE    |
+                      |          (news_mysql)           |
+                      | Named Volume: news_mysql_data   |
+                      +---------------------------------+
+
+=================================================================================
+             HẠ TẦNG QUAN SÁT VÀ QUẢN TRỊ (OBSERVABILITY STACK)
+=================================================================================
++-------------------------+   +-------------------------+   +-------------------+
+|  Node Exporter (Host)   |   |   cAdvisor (Containers) |   | Docker Sock / Logs|
+|   (news_node_exporter)  |   |     (news_cadvisor)     |   |   (news_promtail) |
++-------------------------+   +-------------------------+   +-------------------+
+             | :9100 Scrape                | :8080 Scrape             | Push :3100
+             +--------------+--------------+                          |
+                            v                                         v
+              +---------------------------+             +-----------------------+
+              |    PROMETHEUS ENGINE      |             |   GRAFANA LOKI TSDB   |
+              |     (news_prometheus)     |             |      (news_loki)      |
+              +---------------------------+             +-----------------------+
+                            |                                         |
+                            | PromQL                                  | LogQL
+                            +--------------------+--------------------+
+                                                 v
+                               +-----------------------------------+
+                               |     GRAFANA UNIFIED DASHBOARD     |
+                               |          (news_grafana)           |
+                               +-----------------------------------+
+```
+*Hình 1.1: Sơ đồ kiến trúc phân tầng tổng thể của hệ thống.*
+
+## 1.4. Thiết kế phân vùng mạng Docker và cô lập dịch vụ (Network Segmentation)
+
+Một sai lầm phổ biến trong triển khai container là đặt toàn bộ dịch vụ vào một Docker Bridge Network mặc định (`default bridge`). Khi đó, nếu container ứng dụng Web bị xâm nhập qua một lỗ hổng ứng dụng (RCE hoặc SQL Injection), kẻ tấn công có thể quét trực tiếp sang hạ tầng giám sát, database hoặc các dịch vụ nội bộ khác.
+
+Để triệt tiêu rủi ro này, hệ thống áp dụng nguyên tắc **Network Segmentation** bằng cách khởi tạo 3 mạng Docker riêng biệt sử dụng Bridge Driver:
+
+1. **`news_frontend_net`:** Mạng kết nối người dùng bên ngoài với Nginx Proxy, WordPress và phpMyAdmin.
+2. **`news_backend_net`:** Mạng nội bộ chỉ dành cho giao tiếp giữa WordPress, phpMyAdmin và MySQL. Container `news_nginx` và các thành phần monitoring hoàn toàn không có kết nối vào mạng này.
+3. **`news_monitoring_net`:** Mạng giám sát nội bộ kết nối Node Exporter, cAdvisor, Prometheus, Loki, Promtail và Grafana. Mạng này hoàn toàn độc lập với luồng xử lý nghiệp vụ của người dùng.
+
+*Bảng 1.1: Ma trận phân vùng mạng Docker (Docker Network Segmentation Matrix)*
+
+| Tên Dịch vụ / Container | Mạng `news_frontend_net` | Mạng `news_backend_net` | Mạng `news_monitoring_net` | Cổng Public ra Host |
+| :--- | :---: | :---: | :---: | :--- |
+| `news_nginx` | **Có** | Không | Không | `80`, `443` |
+| `news_wordpress` | **Có** | **Có** | Không | Không |
+| `news_mysql` | Không | **Có** | Không | **Không (Bảo mật)** |
+| `news_phpmyadmin` | **Có** | **Có** | Không | `8081` (Dự phòng) |
+| `news_node_exporter` | Không | Không | **Có** | Không |
+| `news_cadvisor` | Không | Không | **Có** | Không |
+| `news_prometheus` | Không | Không | **Có** | `9090` |
+| `news_grafana` | Không | Không | **Có** | `3000` |
+| `news_loki` | Không | Không | **Có** | Không |
+| `news_promtail` | Không | Không | **Có** | Không |
+
+## 1.5. Thiết kế cơ chế lưu trữ dữ liệu bền vững (Volume Persistence Strategy)
+
+Nguyên lý cơ bản của container là tính tạm thời (ephemeral) - khi container bị xóa hoặc cập nhật phiên bản, toàn bộ dữ liệu ghi trong lớp Read/Write layer sẽ bị xóa sạch. Do đó, hệ thống sử dụng **Docker Named Volumes** để quản lý lưu trữ bền vững:
+
+- **`news_mysql_data`:** Được gắn kết (mount) vào thư mục `/var/lib/mysql` bên trong container MySQL. Toàn bộ các bảng dữ liệu, chỉ mục InnoDB, bản ghi giao dịch (redo log, binlog) được lưu trữ độc lập trên ổ đĩa máy chủ Ubuntu (`/var/lib/docker/volumes/news_mysql_data/_data`).
+- **`news_wp_data`:** Được gắn kết vào thư mục `/var/www/html` của WordPress, lưu trữ mã nguồn, các tệp tin media tải lên (`wp-content/uploads`), giao diện và plugin.
+- **`news_prometheus_data`:** Lưu trữ cơ sở dữ liệu chuỗi thời gian TSDB của Prometheus, đảm bảo biểu đồ theo dõi không bị mất dữ liệu lịch sử khi khởi động lại.
+- **`news_grafana_data`:** Lưu trữ cấu hình tài khoản, session và dashboard người dùng của Grafana.
+- **`news_loki_data`:** Lưu trữ các khối dữ liệu log (chunks) và bảng chỉ mục (index) của Loki.
+
+Cơ chế này đảm bảo quy tắc an toàn dữ liệu: Quản trị viên có thể thoải mái thực hiện `docker compose down` hoặc `docker compose restart` mà không gây ra bất kỳ sự cố mất mát dữ liệu nào.
+
+---
+
+\newpage
+
+# CHƯƠNG 2: TRIỂN KHAI CỔNG THÔNG TIN, CƠ SỞ DỮ LIỆU VÀ NGINX REVERSE PROXY
+
+## 2.1. Triển khai ứng dụng Web WordPress
+
+Dịch vụ WordPress được đóng gói bằng image chính thức `wordpress:6.7-apache`. Cấu hình dịch vụ trong file `docker-compose.yml` tuân thủ các nguyên tắc chuẩn hóa:
+- **Biến môi trường linh hoạt:** Các tham số `WORDPRESS_DB_HOST`, `WORDPRESS_DB_NAME`, `WORDPRESS_DB_USER` và `WORDPRESS_DB_PASSWORD` được nạp tự động từ file `.env`.
+- **Cấu hình Reverse Proxy Header qua `WORDPRESS_CONFIG_EXTRA`:** Nhằm ngăn ngừa hiện tượng vòng lặp chuyển hướng vô tận (Infinite Redirect Loop) khi chạy đằng sau Nginx SSL Termination, cấu hình PHP được chèn trực tiếp để nhận diện header `HTTP_X_FORWARDED_PROTO`:
+  ```php
+  if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+      $_SERVER['HTTPS'] = 'on';
+  }
+  ```
+- **Kiểm tra sức khỏe tự động (Healthcheck):** Container được cấu hình healthcheck định kỳ 15 giây một lần bằng lệnh `curl -s -o /dev/null -w '%{http_code}' http://localhost:80/ | grep -q '^[23]'`.
+
+## 2.2. Triển khai Hệ quản trị Cơ sở dữ liệu MySQL 8.0
+
+Cơ sở dữ liệu được triển khai bằng `mysql:8.0` với các cấu hình tối ưu:
+- **Bộ ký tự tiếng Việt chuẩn hóa:** Khởi chạy với tham số `--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci` giúp lưu trữ đầy đủ dấu tiếng Việt và biểu tượng cảm xúc mà không bị lỗi font.
+- **Cô lập an toàn tuyệt đối:** Cổng 3306 chỉ mở trên mạng `news_backend_net`. Máy chủ bên ngoài hoặc người dùng Internet không thể truy cập trực tiếp vào port này.
+- **Healthcheck sẵn sàng kết nối:** Sử dụng `mysqladmin ping -h localhost -u news_user -p$${MYSQL_PASSWORD}` để xác nhận MySQL đã hoàn tất nạp bộ nhớ đệm InnoDB và sẵn sàng nhận kết nối từ WordPress.
+
+## 2.3. Triển khai Công cụ Quản trị CSDL trực quan phpMyAdmin
+
+Dịch vụ `news_phpmyadmin` sử dụng image `phpmyadmin/phpmyadmin:5.2`, cho phép quản trị viên tương tác trực tiếp với cơ sở dữ liệu `news_portal_db`:
+- Kết nối tới MySQL thông qua tên máy chủ nội bộ `news_mysql` trên port 3306.
+- Cho phép truy cập qua hai kênh:
+  1. Kênh chính thức: Đi qua Nginx Reverse Proxy tại đường dẫn bảo mật `https://192.168.177.128/pma/`.
+  2. Kênh quản trị dự phòng (Out-of-band management): Mở tại cổng `8081` trên giao diện mạng host, phục vụ trường hợp khẩn cấp khi Reverse Proxy gặp sự cố.
+
+## 2.4. Cấu hình Nginx Reverse Proxy và SSL/TLS Offloading
+
+Nginx đóng vai trò là "người gác cổng" (Reverse Proxy & Gateway) duy nhất của hệ thống, lắng nghe trên 2 cổng mạng chuẩn: Cổng 80 (HTTP) và Cổng 443 (HTTPS).
+
+```nginx
+# Cấu hình chuyển hướng toàn bộ lưu lượng HTTP sang HTTPS
+server {
+    listen 80;
+    listen [::]:80;
+    server_name _;
+    return 301 https://$host$request_uri;
+}
+
+# Cấu hình máy chủ an toàn HTTPS
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name _;
+
+    ssl_certificate /etc/nginx/ssl/selfsigned.crt;
+    ssl_certificate_key /etc/nginx/ssl/selfsigned.key;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+    ...
+```
+
+### Quy trình tạo Chứng chỉ SSL Tự ký (Self-Signed Certificate)
+Để phục vụ môi trường thực nghiệm và diễn tập an toàn thông tin, chứng chỉ SSL được khởi tạo với độ dài khóa RSA 2048-bit, thời hạn hiệu lực 365 ngày:
+```bash
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+  -keyout nginx/ssl/selfsigned.key \
+  -out nginx/ssl/selfsigned.crt \
+  -subj "/C=VN/ST=HaNoi/L=HaNoi/O=DevOpsSysAdmin/OU=NewsPortal/CN=192.168.177.128"
+```
+> **Khuyến cáo học thuật:** Do đây là chứng chỉ Self-signed (tự ký) không thông qua tổ chức phát hành chứng chỉ quốc tế (Public CA), các trình duyệt web sẽ hiển thị cảnh báo bảo mật *"Your connection is not private"*. Đây là cơ chế bảo vệ bình thường của trình duyệt đối với chứng chỉ nội bộ.
+
+## 2.5. Cấu hình các tiêu chuẩn An toàn HTTP (Security Headers)
+
+Để ngăn chặn các cuộc tấn công khai thác lỗ hổng trình duyệt, Nginx được cấu hình chèn bổ sung các HTTP Header an ninh:
+
+*Bảng 2.1: Danh mục các HTTP Security Headers được cấu hình trên Nginx*
+
+| Tên HTTP Header | Giá trị cấu hình | Tác dụng phòng vệ an ninh |
+| :--- | :--- | :--- |
+| `X-Content-Type-Options` | `nosniff` | Ngăn chặn trình duyệt tự ý đoán định MIME-type (MIME-sniffing), chống tấn công chèn mã độc vào file tĩnh. |
+| `X-Frame-Options` | `SAMEORIGIN` | Ngăn chặn website bị nhúng vào `<iframe>` của tên miền lạ, chống hoàn toàn kỹ thuật tấn công Clickjacking. |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` | Bảo vệ thông tin nhạy cảm trên URL không bị rò rỉ sang các website bên thứ ba khi người dùng bấm vào liên kết ngoài. |
+| `X-XSS-Protection` | `1; mode=block` | Kích hoạt bộ lọc chống tấn công Cross-Site Scripting (Reflected XSS) trên các phiên bản trình duyệt thế hệ trước. |
+
+## 2.6. Xử lý đường dẫn và tham số Proxy Header cho WordPress
+
+Khi đứng sau Reverse Proxy, ứng dụng WordPress cần biết chính xác địa chỉ IP của client thật và giao thức thực tế đang sử dụng để xử lý việc tạo liên kết (URL generation) và phân tích truy cập:
+
+```nginx
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+```
+Nhờ cơ chế này, toàn bộ hình ảnh, stylesheet CSS, tệp JavaScript và các liên kết bài viết trong WordPress đều được định tuyến chuẩn xác dưới giao thức `https://`, không gặp lỗi vỡ giao diện (Mixed Content) hay lỗi chuyển hướng lặp.
+
+---
+
+\newpage
+
+# CHƯƠNG 3: HỆ THỐNG GIÁM SÁT HIỆU NĂNG VỚI PROMETHEUS VÀ GRAFANA
+
+## 3.1. Tổng quan mô hình giám sát Pull-based Metrics
+
+Prometheus là hệ thống giám sát và cảnh báo mã nguồn mở hàng đầu trong hệ sinh thái Cloud-Native. Khác với các hệ thống giám sát truyền thống hoạt động theo cơ chế Push (agent chủ động đẩy số liệu về máy chủ trung tâm), Prometheus áp dụng cơ chế **Pull-based Monitoring**:
+- Định kỳ theo chu kỳ (mặc định cấu hình `scrape_interval: 15s`), máy chủ Prometheus sẽ gửi yêu cầu HTTP GET tới địa chỉ `/metrics` của các Exporter để kéo dữ liệu chỉ số về.
+- Cơ chế này giúp máy chủ giám sát kiểm soát chặt chẽ tần suất lấy mẫu, dễ dàng phát hiện khi một dịch vụ mục tiêu bị sập (trả về trạng thái `DOWN`), đồng thời loại bỏ nguy cơ máy chủ giám sát bị nghẽn (overloaded) do hàng ngàn agent ồ ạt gửi tin cùng một lúc.
+
+## 3.2. Thu thập chỉ số tài nguyên Host với Node Exporter
+
+Node Exporter (`news_node_exporter`) được triển khai để thu thập các chỉ số phần cứng ở mức hệ điều hành máy chủ Ubuntu Host:
+- Container được mount các thư mục đặc biệt từ host với chế độ chỉ đọc (`read-only`): `/proc` và `/sys`.
+- Bật cờ `pid: host` và cấu hình bộ lọc đường dẫn `--path.rootfs=/host/rootfs`.
+- Các chỉ số quan trọng thu thập được bao gồm:
+  - `node_cpu_seconds_total`: Tải sử dụng của từng nhân CPU (user, system, idle, iowait).
+  - `node_memory_MemAvailable_bytes`, `node_memory_MemTotal_bytes`: Mức tiêu thụ dung lượng RAM thực tế.
+  - `node_filesystem_free_bytes`, `node_filesystem_size_bytes`: Tỷ lệ sử dụng dung lượng các phân vùng ổ đĩa.
+  - `node_network_receive_bytes_total`, `node_network_transmit_bytes_total`: Băng thông truyền nhận mạng trên card mạng máy chủ.
+
+## 3.3. Thu thập chỉ số hiệu năng Container với cAdvisor
+
+cAdvisor (Container Advisor) của Google (`news_cadvisor`) được triển khai để đo lường chi tiết mức tiêu thụ tài nguyên của từng Docker Container đang chạy:
+- Được mount trực tiếp các điểm giao tiếp của Docker daemon: `/var/run/docker.sock`, `/sys/fs/cgroup`, và `/var/lib/docker`.
+- Thu thập tức thời các chỉ số theo tên container (`container_name`):
+  - `container_cpu_usage_seconds_total`: Mức độ chiếm dụng CPU của từng container (ví dụ `news_wordpress` so với `news_mysql`).
+  - `container_memory_working_set_bytes`: Bộ nhớ RAM đang sử dụng thực tế của container.
+  - `container_network_receive_bytes_total`: Lưu lượng mạng qua từng veth interface của container.
+
+## 3.4. Cấu hình Prometheus Scrape Targets và chu kỳ thu thập
+
+Tệp tin cấu hình `prometheus/prometheus.yml` được thiết lập tối ưu:
+```yaml
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['news_node_exporter:9100']
+
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['news_cadvisor:8080']
+```
+*Bảng 3.1: Danh mục các Scrape Targets được Prometheus giám sát*
+
+| Job Name | Địa chỉ Target (DNS Docker) | Trạng thái thực tế | Chu kỳ Scrape |
+| :--- | :--- | :---: | :---: |
+| `prometheus` | `localhost:9090` | **UP (100%)** | 15 giây |
+| `node_exporter` | `news_node_exporter:9100` | **UP (100%)** | 15 giây |
+| `cadvisor` | `news_cadvisor:8080` | **UP (100%)** | 15 giây |
+
+## 3.5. Trực quan hóa dữ liệu với Grafana và Provisioning tự động
+
+Để hiện thực hóa triết lý **Infrastructure as Code (IaC)** trong quản trị giám sát, toàn bộ nguồn dữ liệu (Datasources) và bảng điều khiển (Dashboards) của Grafana đều được cấu hình dưới dạng tệp tin mã nguồn (Provisioning Files), không cần thao tác bấm chuột thủ công:
+
+1. **Datasource Provisioning:** File `grafana/provisioning/datasources/prometheus.yml` tự động tạo kết nối tới Prometheus TSDB tại địa chỉ nội bộ `http://news_prometheus:9090`.
+2. **Dashboard Provisioning:** File `grafana/provisioning/dashboards/dashboards.yml` tự động nạp bảng điều khiển chuyên nghiệp từ tệp `grafana/dashboards/system-overview.json`.
+3. Bảng điều khiển tích hợp đầy đủ các Gauge, Time-series chart và Stat panel phản ánh trực quan:
+   - Phần trăm tải CPU máy chủ Host và phần trăm dung lượng RAM đang chiếm dụng.
+   - Dung lượng ổ đĩa khả dụng.
+   - Biểu đồ phân bổ RAM theo từng container trong thời gian thực.
+   - Lưu lượng mạng (Network In/Out Traffic).
+
+---
+
+\newpage
+
+# CHƯƠNG 4: HỆ THỐNG THU THẬP VÀ PHÂN TÍCH NHẬT KÝ (LOGS) VỚI LOKI VÀ PROMTAIL
+
+## 4.1. Kiến trúc hệ thống tập trung nhật ký với Grafana Loki
+
+Trong các hệ thống phân tán truyền thống, việc tìm kiếm lỗi đòi hỏi quản trị viên phải SSH vào từng máy chủ và sử dụng các lệnh thủ công như `grep`, `tail -f`. Mô hình này kém hiệu quả, tốn thời gian và không thể tương quan sự cố giữa nhiều dịch vụ.
+
+Giải pháp **Grafana Loki** ra đời với cách tiếp cận mang tính cách mạng: *"Like Prometheus, but for logs"*. Khác với Elasticsearch lập chỉ mục toàn bộ nội dung văn bản (full-text index) dẫn đến kích thước chỉ mục khổng lồ và ngốn RAM, Loki **chỉ lập chỉ mục các nhãn metadata** (Labels) của luồng log, còn nội dung log được nén thành các chunk lưu trữ tuần tự. Điều này giúp Loki:
+- Tiêu tốn cực kỳ ít bộ nhớ RAM và tài nguyên CPU.
+- Vận hành mượt mà ngay cả trên các máy chủ có tài nguyên khiêm tốn (như VM 4GB RAM).
+- Sử dụng chung cú pháp truy vấn với Prometheus (LogQL tương đồng với PromQL).
+
+## 4.2. Promtail Log Shipper: Cơ chế quét Docker Socket và Nginx Log Volume
+
+Promtail (`news_promtail`) đóng vai trò là Agent thu thập dữ liệu (Log Shipper):
+- Được gắn kết tệp Docker Socket `/var/run/docker.sock` ở chế độ `read-only`. Promtail sử dụng API của Docker Engine để tự động phát hiện (Service Discovery) các container đang chạy và đọc luồng `stdout`/`stderr`.
+- Được gắn kết thư mục log tĩnh của Nginx `/var/log/nginx` để đọc trực tiếp file `access.log` và `error.log`.
+- Định kỳ gửi các batch bản ghi log về cổng `3100` của máy chủ `news_loki` qua giao thức HTTP REST API.
+
+## 4.3. Thiết kế hệ thống nhãn (Labels) khoa học, tối ưu hiệu năng
+
+Một nguyên tắc sống còn khi làm việc với Loki là **ngăn chặn sự bùng nổ số lượng nhãn (High Cardinality)**. Nếu gán các giá trị thay đổi liên tục (như IP người dùng, URL đầy đủ hoặc Request ID) làm nhãn, Loki sẽ tạo ra hàng ngàn luồng chỉ mục riêng lẻ, làm sụt giảm nghiêm trọng hiệu năng hệ thống.
+
+Hệ thống đã thiết kế bộ nhãn chuẩn hóa và hữu hạn:
+*Bảng 4.1: Danh mục cấu trúc nhãn (Labels) được thiết lập cho Promtail*
+
+| Tên Nhãn (Label) | Giá trị tiêu biểu | Mục đích định danh |
+| :--- | :--- | :--- |
+| `job` | `nginx`, `webapp`, `docker` | Phân loại nhóm dịch vụ cấp cao |
+| `service` | `reverse-proxy`, `wordpress`, `database` | Phân biệt vai trò nghiệp vụ |
+| `container` | `news_nginx`, `news_wordpress`, `news_mysql` | Tên chính xác của container thực thi |
+
+## 4.4. Tích hợp Loki Datasource vào Grafana
+
+Tệp tin `grafana/provisioning/datasources/loki.yml` tự động đăng ký Loki làm nguồn dữ liệu:
+```yaml
+apiVersion: 1
+datasources:
+  - name: Loki
+    type: loki
+    access: proxy
+    url: http://news_loki:3100
+    isDefault: false
+    editable: true
+```
+Khi người dùng truy cập menu **Explore** trên Grafana, nguồn dữ liệu Loki đã sẵn sàng phục vụ các câu truy vấn thời gian thực.
+
+## 4.5. Phân tích 3 kịch bản truy vấn LogQL thực tế và kết quả kiểm thử
+
+Hệ thống đã triển khai và thực thi thành công 3 câu lệnh LogQL đại diện cho 3 bài toán giám sát cốt lõi:
+
+### Kịch bản 1: Giám sát toàn bộ luồng Access và Error Log của Nginx Reverse Proxy
+- **Câu lệnh LogQL:**
+  ```logql
+  {job="nginx"}
+  ```
+- **Ý nghĩa kỹ thuật:** Thu thập toàn bộ các bản ghi được gắn nhãn `job="nginx"`.
+- **Dữ liệu thực tế ghi nhận từ hệ thống:**
+  ```text
+  192.168.177.128 - - [25/Oct/2026:10:41:40 +0000] "GET / HTTP/1.1" 200 4882 "-" "curl/8.5.0"
+  192.168.177.128 - - [25/Oct/2026:10:41:40 +0000] "GET /pma/ HTTP/1.1" 200 1342 "-" "curl/8.5.0"
+  ```
+
+### Kịch bản 2: Phát hiện các yêu cầu HTTP gặp lỗi 5xx trên Reverse Proxy
+- **Câu lệnh LogQL:**
+  ```logql
+  {job="nginx"} |~ "HTTP/[0-9.]+\" 5[0-9][0-9]"
+  ```
+- **Ý nghĩa kỹ thuật:** Sử dụng bộ lọc biểu thức chính quy (Regex Filter `|~`) để lọc các dòng nhật ký HTTP có mã trạng thái bắt đầu từ 500 đến 599 (Server Error, Bad Gateway, Service Unavailable).
+- **Dữ liệu thực tế ghi nhận từ hệ thống:**
+  ```text
+  127.0.0.1 - - [25/Oct/2026:10:41:00 +0000] "GET /test-error HTTP/1.1" 500 193 "-" "curl/7.68.0"
+  127.0.0.1 - - [25/Oct/2026:10:41:00 +0000] "GET /backend-down HTTP/1.1" 502 150 "-" "curl/7.68.0"
+  ```
+
+### Kịch bản 3: Phát hiện lỗi, Exception và cảnh báo từ Ứng dụng Web WordPress
+- **Câu lệnh LogQL:**
+  ```logql
+  {job="webapp"} |~ "(?i)(error|exception|failed)"
+  ```
+- **Ý nghĩa kỹ thuật:** Thu thập log từ container `news_wordpress`, sử dụng cờ `(?i)` để tìm kiếm không phân biệt hoa thường các từ khóa chỉ báo sự cố phần mềm như `error`, `exception`, hoặc `failed`.
+- **Dữ liệu thực tế ghi nhận từ hệ thống:**
+  ```text
+  [Sun Oct 25 10:43:08.572458 2026] [php:error] [pid 38] [client 172.28.0.4:38420] 
+  PHP Fatal error:  Uncaught Exception: Simulated Application Error for Loki Testing in /var/www/html/error_test.php:3
+  ```
+
+---
+
+\newpage
+
+# CHƯƠNG 5: ĐÁNH GIÁ AN TOÀN THÔNG TIN VÀ GIA CỐ HỆ THỐNG (SYSTEM HARDENING)
+
+## 5.1. Áp dụng nguyên tắc đặc quyền tối thiểu (Least Privilege)
+
+Nhằm bảo vệ máy chủ Host khỏi nguy cơ bị chiếm quyền điều khiển (Container Breakout), hệ thống đã rà soát và cấu hình chặt chẽ quyền hạn của từng container:
+- **Kiểm soát cờ đặc quyền (Privileged Flag):** Hệ thống triệt để không sử dụng cờ `privileged: true` cho các dịch vụ ứng dụng, cơ sở dữ liệu và proxy (`news_wordpress`, `news_mysql`, `news_nginx`, `news_phpmyadmin`, `news_prometheus`, `news_grafana`, `news_loki`, `news_node_exporter`). Duy nhất container `news_cadvisor` được cấu hình `privileged: true` do yêu cầu kỹ thuật bắt buộc: cAdvisor cần quyền đọc trực tiếp các thông số cgroup nhân Linux, thiết bị `/dev/kmsg` và thông tin ổ đĩa hệ thống để trích xuất chỉ số hiệu năng container. Đây là một điểm cần cân nhắc về mặt an ninh (security trade-off); trong môi trường sản xuất khắt khe, cAdvisor có thể được thay thế bằng cgroup metrics exporter không yêu cầu full-privilege.
+- **Cơ chế chống leo thang đặc quyền:** Áp dụng `security_opt: [ "no-new-privileges:true" ]` trên các container hỗ trợ, ngăn chặn các tiến trình bên trong container thực thi lệnh `setuid` hoặc `setgid` để giành quyền root.
+- **Quyền truy cập Docker Socket:** Thư mục `/var/run/docker.sock` chỉ được gắn vào container `news_promtail` và `news_cadvisor` với tùy chọn chỉ đọc `:ro` (`read-only`), ngăn chặn tuyệt đối việc container gửi lệnh điều khiển ngược lại Docker daemon.
+- **Phân định quyền thực thi tiến trình (Process Execution):** Các dịch vụ giám sát `news_prometheus` và `news_node_exporter` chạy dưới user `nobody` (UID 65534); `news_grafana` chạy dưới user `grafana` (UID 472); `news_loki` chạy dưới user `loki` (UID 10001); `news_mysql` chạy dưới user `mysql` (UID 999). Các container còn lại (`news_nginx`, `news_wordpress`, `news_phpmyadmin`, `news_promtail`) khởi chạy tiến trình master dưới quyền `root` do đặc thù liên kết cổng mạng < 1024 (cổng 80/443) và đọc log hệ thống, nhưng các tiến trình worker xử lý yêu cầu người dùng đều được hạ quyền xuống user thông thường (`nginx`, `www-data`).
+
+## 5.2. Kiểm soát bề mặt tấn công: Giới hạn Port Exposure
+
+Trong môi trường triển khai thực tế, việc mở bừa bãi các cổng dịch vụ ra mạng ngoài là một trong những nguyên nhân hàng đầu dẫn đến rò rỉ dữ liệu. Dự án đã áp dụng chính sách cổng nghiêm ngặt:
+- **Cơ sở dữ liệu MySQL:** Cổng `3306` hoàn toàn không khai báo trong mục `ports:` của `docker-compose.yml`. Dữ liệu chỉ có thể được truy vấn thông qua mạng nội bộ `news_backend_net`.
+- **Promtail và Loki:** Cổng `3100` và `9080` chỉ phục vụ giao tiếp nội bộ giữa các container trong mạng `news_monitoring_net`.
+- **WordPress:** Cổng `80` của container WordPress không công khai ra host, buộc mọi kết nối phải đi qua Nginx Reverse Proxy.
+- **Các cổng công khai duy nhất:** Cổng `80` (HTTP redirect), Cổng `443` (HTTPS Nginx), Cổng `9090` (Prometheus) và Cổng `3000` (Grafana).
+
+## 5.3. Quản lý bí mật (Secrets Management) và bảo vệ file cấu hình
+
+- **Phân tách cấu hình và mã nguồn:** Toàn bộ mật khẩu cơ sở dữ liệu (`MYSQL_ROOT_PASSWORD`, `MYSQL_PASSWORD`) và thông tin quản trị Grafana được tách biệt hoàn toàn vào file `.env`.
+- **Bảo vệ mã nguồn Git:** File `.gitignore` được cấu hình chặt chẽ để loại trừ `.env`, `*.key`, `*.crt` và các dữ liệu runtime.
+- **Phân quyền tập tin trên Linux:** File `.env` và khóa bảo mật SSL `selfsigned.key` được gán quyền `chmod 600` (chỉ cho phép user `ubuntu` sở hữu tệp có quyền đọc và ghi).
+
+## 5.4. Đánh giá trạng thái Tường lửa Host OS (UFW/Iptables)
+
+Trước khi tiến hành triển khai, hệ thống đã thực hiện khảo sát kỹ lưỡng cấu hình tường lửa:
+- Trạng thái tường lửa `ufw status` trên máy chủ Ubuntu đang ở trạng thái `inactive`.
+- Các cổng mạng được quản lý và bảo vệ trực tiếp thông qua cơ chế Docker iptables chains và Network Segmentation.
+- Nhóm triển khai không tùy tiện bật UFW hoặc can thiệp chính sách SSH port 22, đảm bảo tuyệt đối không làm gián đoạn kết nối quản trị từ xa.
+
+## 5.5. Thiết lập cơ chế kiểm tra sức khỏe tự động (Docker Healthchecks)
+
+Hệ thống tích hợp chỉ thị `healthcheck` cho các dịch vụ nòng cốt (`news_mysql`, `news_wordpress`, `news_nginx`):
+- Giúp Docker Engine giám sát liên tục trạng thái sẵn sàng của dịch vụ.
+- Thiết lập quan hệ phụ thuộc thông minh bằng cú pháp `depends_on: condition: service_healthy`. Ví dụ: WordPress chỉ được phép khởi động khi MySQL đã hoàn tất kiểm tra sức khỏe và sẵn sàng nhận kết nối, loại bỏ triệt để lỗi kết nối cơ sở dữ liệu chập chờn khi khởi động máy chủ.
+
+---
+
+\newpage
+
+# CHƯƠNG 6: QUY TRÌNH QUẢN LÝ MÃ NGUỒN GIT VÀ LỊCH SỬ PHIÊN BẢN
+
+## 6.1. Cấu trúc kho mã nguồn và loại trừ rò rỉ dữ liệu qua .gitignore
+
+Kho mã nguồn được khởi tạo và quản lý tại thư mục `/home/ubuntu/trienkhaihethong` trên máy chủ Ubuntu. Cấu trúc thư mục được tổ chức khoa học, tách bạch rõ ràng giữa mã nguồn, cấu hình dịch vụ và tài liệu:
+
+```
+trienkhaihethong/
+├── docker-compose.yml          # Tệp tin điều phối toàn bộ 10 container dịch vụ
+├── .env.example                # Tệp tin mẫu biến môi trường (an toàn, không chứa secret)
+├── .gitignore                  # Cấu hình loại trừ tệp tin nhạy cảm khỏi Git
+├── README.md                   # Hướng dẫn kiến trúc và vận hành hệ thống bằng tiếng Việt
+├── nginx/                      # Cấu hình Nginx Reverse Proxy
+│   ├── nginx.conf              # Cấu hình Nginx chính
+│   ├── conf.d/default.conf     # Định tuyến proxy, SSL, security headers
+│   └── ssl/                    # Thư mục chứa khóa và chứng chỉ SSL
+├── prometheus/                 # Cấu hình máy chủ Prometheus
+│   └── prometheus.yml          # Cấu hình scrape targets cho Node Exporter, cAdvisor
+├── grafana/                    # Cấu hình Provisioning của Grafana
+│   ├── provisioning/
+│   │   ├── datasources/        # Khởi tạo tự động datasource Prometheus & Loki
+│   │   └── dashboards/         # Khởi tạo tự động dashboard provider
+│   └── dashboards/
+│       └── system-overview.json# Dashboard định nghĩa chi tiết chỉ số giám sát
+├── loki/                       # Cấu hình máy chủ Grafana Loki
+│   └── loki-config.yml         # Cấu hình lưu trữ, chỉ mục và retention
+├── promtail/                   # Cấu hình Promtail Log Shipper
+│   └── promtail-config.yml     # Cấu hình Docker discovery và regex parsing
+└── report/                     # Thư mục chứa tài liệu báo cáo và minh chứng
+    ├── BAO_CAO_CUOI_KY.md      # Báo cáo chi tiết định dạng Markdown
+    └── BAO_CAO_CUOI_KY.docx    # Báo cáo học thuật định dạng Microsoft Word
+```
+
+Tệp `.gitignore` được cấu hình nghiêm ngặt:
+```gitignore
+.env
+*.log
+nginx/ssl/*.key
+nginx/ssl/*.crt
+__pycache__/
+*.pyc
+data/
+```
+
+## 6.2. Quy chuẩn thông điệp Commit (Conventional Commits)
+
+Nhằm đảm bảo tính chuyên nghiệp và khả năng truy vết lịch sử phát triển phần mềm, các thông điệp commit tuân thủ nghiêm ngặt tiêu chuẩn **Conventional Commits**:
+- `feat(scope): Mô tả tính năng mới`
+- `docs(scope): Bổ sung hoặc chỉnh sửa tài liệu kỹ thuật`
+- `fix(scope): Sửa lỗi cấu hình hoặc mã nguồn`
+
+## 6.3. Chi tiết lịch sử các Commit triển khai thực tế
+
+Quá trình xây dựng hệ thống được ghi nhận qua các commit tuần tự trên nhánh `main`:
+
+*Bảng 6.1: Bảng tổng hợp lịch sử các Git Commits của dự án*
+
+| Thứ tự | Mã Hash | Tiêu chuẩn Commit | Nội dung tóm tắt thay đổi kỹ thuật |
+| :---: | :---: | :--- | :--- |
+| **0** | `3edf85b` | `feat(app)` | Triển khai WordPress 6.7, MySQL 8.0, phpMyAdmin với Docker Compose, cấu hình named volumes và mạng frontend/backend. |
+| **1** | `6ad465e` | `feat(proxy)` | Cấu hình Nginx Reverse Proxy, SSL/TLS Termination, chuyển hướng HTTP 301, proxy headers và các HTTP Security Headers. |
+| **2** | `5e16e02` | `feat(monitoring)` | Triển khai hạ tầng giám sát Prometheus, Node Exporter, cAdvisor, cấu hình provisioning Grafana và dashboard trực quan. |
+| **3** | `b7f07ab` | `feat(logging)` | Triển khai hệ thống tập trung nhật ký với Loki, Promtail, cấu hình Docker socket scraper và kiểm thử 3 truy vấn LogQL. |
+| **4** | `7e51e0b` | `docs` | Hoàn thiện tài liệu README hướng dẫn vận hành và Báo cáo học thuật cuối kỳ (định dạng Markdown và Word DOCX). |
+| **5** | `efef9cd` | `chore` | Cập nhật tệp `.gitignore` loại trừ các script kiểm thử tạm và hoàn thiện cấu hình Nginx. |
+
+---
+
+\newpage
+
+# CHƯƠNG 7: KẾT QUẢ KIỂM THỬ TÍCH HỢP TOÀN DIỆN (INTEGRATION TESTING)
+
+Quá trình kiểm thử tích hợp được thực hiện trực tiếp trên môi trường thực tế máy chủ ảo Ubuntu `192.168.177.128`, kiểm tra chéo giữa các tầng dịch vụ.
+
+*Bảng 7.1: Bảng ma trận kết quả kiểm thử tích hợp toàn diện (Integration Test Matrix)*
+
+| Hạng mục Kiểm thử | Phương pháp Kiểm thử | Kết quả Kỳ vọng | Kết quả Thực tế Ghi nhận | Đánh giá |
+| :--- | :--- | :--- | :--- | :---: |
+| **Tính sẵn sàng Web** | `curl -k https://192.168.177.128/` | Trả về HTTP 200, chứa tiêu đề Cổng thông tin | `HTTP/2 200`, `<title>Cổng Thông Tin Tin Tức Công Nghệ</title>` | **ĐẠT** |
+| **Chuyển hướng HTTP** | `curl -I http://192.168.177.128/` | Trả về mã chuyển hướng 301 sang HTTPS | `HTTP/1.1 301 Moved Permanently`, `Location: https://192.168.177.128/` | **ĐẠT** |
+| **Security Headers** | `curl -k -I https://192.168.177.128/` | Có đầy đủ các header bảo mật | `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN` | **ĐẠT** |
+| **Kết nối phpMyAdmin** | `curl -k https://192.168.177.128/pma/` | Trả về HTTP 200, trang đăng nhập phpMyAdmin | `HTTP/2 200`, giao diện phpMyAdmin 5.2 sẵn sàng đăng nhập MySQL | **ĐẠT** |
+| **Bền vững CSDL (Restart)** | `docker compose restart news_mysql news_wordpress` | Dữ liệu bài viết và cấu hình không bị mất | Sau khi restart, website tải bình thường, giữ nguyên 100% bài viết | **ĐẠT** |
+| **Prometheus Targets** | `curl http://localhost:9090/api/v1/targets` | 3/3 targets ở trạng thái `UP` | `node_exporter`, `cadvisor`, `prometheus` đều đạt trạng thái `HEALTH_GOOD (UP)` | **ĐẠT** |
+| **Grafana Provisioning** | Kiểm tra Datasource & Dashboard qua API | Nạp sẵn Datasource và Dashboard | Tự động tạo kết nối Prometheus, Loki và Dashboard Overview | **ĐẠT** |
+| **Loki Log Ingestion** | `curl http://localhost:3100/ready` | Loki trả về trạng thái ready | `ready` (HTTP 200), nhận dữ liệu log liên tục từ Promtail | **ĐẠT** |
+| **Truy vấn LogQL 1** | `{job="nginx"}` | Xuất hiện luồng nhật ký Nginx | Trả về các dòng log truy cập HTTP request thực tế | **ĐẠT** |
+| **Truy vấn LogQL 2** | `{job="nginx"} \|~ "HTTP/[0-9.]+\" 5[0-9][0-9]"` | Bắt chính xác lỗi HTTP 5xx | Phát hiện chính xác các bản ghi lỗi 500 và 502 được kích hoạt | **ĐẠT** |
+| **Truy vấn LogQL 3** | `{job="webapp"} \|~ "(?i)(error\|exception\|failed)"` | Bắt chính xác lỗi ứng dụng PHP | Phát hiện chính xác bản ghi PHP Fatal Exception từ WordPress | **ĐẠT** |
+| **Network Isolation** | `docker exec news_nginx nc -z news_mysql 3306` | Nginx không thể kết nối tới MySQL | Connection timed out / unreachable (Đúng theo thiết kế bảo mật) | **ĐẠT** |
+
+## 7.1. Kiểm thử tính toàn vẹn và phản hồi của Ứng dụng Web
+
+Sau khi toàn bộ ngăn xếp dịch vụ được triển khai thông qua Docker Compose, nhóm đã tiến hành khảo sát trạng thái của toàn bộ 10 container dịch vụ trên máy chủ Ubuntu thông qua câu lệnh `docker compose ps`:
+
+![Hình 7.6: Trạng thái 10 container dịch vụ của dự án qua lệnh docker compose ps](images/06_docker_compose_ps.png)
+*Hình 7.6: Trạng thái 10 container dịch vụ của dự án qua lệnh docker compose ps.*
+
+*Giải thích minh chứng Hình 7.6:* Ảnh chụp màn hình từ terminal Ubuntu xác nhận 100% container dịch vụ đều đang vận hành ở trạng thái `Up` ổn định. Các dịch vụ có cấu hình kiểm tra sức khỏe tự động (`news_nginx`, `news_wordpress`, `news_mysql`, `news_cadvisor`) đều đạt trạng thái `healthy`. Các cổng mạng công khai (`80`, `443`, `3000`, `8081`, `9090`) được phân bổ chính xác theo ma trận cổng, trong khi cổng cơ sở dữ liệu `3306` được bảo vệ tuyệt đối trong mạng nội bộ.
+
+Tiếp theo, ứng dụng Cổng thông tin tin tức WordPress được kiểm thử truy cập trực tiếp từ trình duyệt thông qua giao thức HTTPS:
+
+![Hình 7.1: Giao diện Cổng thông tin tin tức WordPress hiển thị qua HTTPS](images/01_wordpress.png)
+*Hình 7.1: Giao diện Cổng thông tin tin tức WordPress hiển thị qua HTTPS.*
+
+*Giải thích minh chứng Hình 7.1:* Ảnh chụp giao diện thực tế từ trình duyệt chứng minh website WordPress hoạt động ổn định và hiển thị chuẩn xác đằng sau Nginx Reverse Proxy. Tiêu đề website hiển thị đúng cấu hình "Cổng Thông Tin Tin Tức Công Nghệ", các liên kết stylesheet CSS và cấu trúc bài viết tin tức mẫu ("Hội thảo Công nghệ Phần mềm và DevOps Cloud-Native", "Thông báo tuyển sinh và kế hoạch học tập năm 2026") đều được tải đầy đủ qua HTTPS mà không gặp lỗi Mixed Content.
+
+Đối với công cụ quản trị cơ sở dữ liệu phpMyAdmin, nhóm đã tiến hành kiểm tra khả năng truy cập qua đường dẫn proxy `/pma/`:
+
+![Hình 7.2: Giao diện đăng nhập phpMyAdmin qua Reverse Proxy](images/02_phpmyadmin.png)
+*Hình 7.2: Giao diện đăng nhập phpMyAdmin qua Reverse Proxy.*
+
+*Giải thích minh chứng Hình 7.2:* Ảnh chụp màn hình chứng minh giao diện đăng nhập phpMyAdmin phiên bản 5.2 sẵn sàng phục vụ tại URL `https://192.168.177.128/pma/`. Dịch vụ đã kết nối thành công tới máy chủ MySQL nội bộ trên cổng 3306, cho phép quản trị viên đăng nhập an toàn bằng tài khoản `news_user` hoặc `root` để thực hiện các thao tác quản trị cơ sở dữ liệu.
+
+## 7.2. Kiểm thử Reverse Proxy, chuyển hướng HTTP sang HTTPS và Security Headers
+
+Nhóm đã sử dụng công cụ `curl` để kiểm tra cơ chế định tuyến và các tiêu chuẩn bảo mật HTTP trên Nginx:
+1. **Kiểm tra chuyển hướng HTTP 301:** Yêu cầu gửi tới cổng 80 (`http://192.168.177.128/`) ngay lập tức nhận mã trạng thái `HTTP/1.1 301 Moved Permanently` với tiêu đề `Location: https://192.168.177.128/`, chứng minh toàn bộ lưu lượng HTTP không an toàn đều được tự động nâng cấp lên kênh truyền mã hóa HTTPS.
+2. **Kiểm tra HTTP Security Headers:** Phản hồi từ máy chủ HTTPS chứa đầy đủ 4 tiêu đề an ninh bắt buộc:
+   - `X-Content-Type-Options: nosniff` (chống đoán định kiểu file).
+   - `X-Frame-Options: SAMEORIGIN` (chống Clickjacking).
+   - `X-XSS-Protection: 1; mode=block` (bộ lọc chống tấn công XSS).
+   - `Referrer-Policy: strict-origin-when-cross-origin` (bảo vệ thông tin URL).
+
+## 7.3. Kiểm thử tính bền vững của Cơ sở dữ liệu sau chu kỳ Khởi động lại (Zero-loss Restart)
+
+Để kiểm chứng tính bền vững của cơ chế lưu trữ Named Volumes (`news_mysql_data` và `news_wp_data`), nhóm đã tiến hành kịch bản thử nghiệm:
+1. Khởi động lại hai container cốt lõi: `docker compose restart news_mysql news_wordpress`.
+2. Kiểm tra log khởi động: MySQL khởi động lại và tải toàn bộ dữ liệu InnoDB trong 1.4 giây; WordPress tự động kết nối lại thành công ngay khi MySQL đạt trạng thái `healthy`.
+3. Kiểm tra lại trang web qua lệnh `curl -k https://192.168.177.128/`: Tiêu đề cổng thông tin, danh sách bài viết đã đăng và các thiết lập tài khoản quản trị được bảo toàn nguyên vẹn 100%, không bị ảnh hưởng bởi chu kỳ khởi động lại container.
+
+## 7.4. Kiểm thử trạng thái Targets và Thu thập Metrics của Prometheus
+
+Hạ tầng giám sát hiệu năng được kiểm thử thông qua giao diện quản trị Prometheus Targets và bảng điều khiển Grafana:
+
+![Hình 7.3: Danh sách các Scrape Targets trong Prometheus đạt trạng thái UP 100%](images/03_prometheus_targets.png)
+*Hình 7.3: Danh sách các Scrape Targets trong Prometheus đạt trạng thái UP 100%.*
+
+*Giải thích minh chứng Hình 7.3:* Ảnh chụp màn hình từ giao diện Prometheus tại `http://192.168.177.128:9090/targets` xác nhận cả 3 scrape pools đều đạt trạng thái `UP (1/1 up)` màu xanh:
+- `cadvisor (1/1 up)`: Thu thập chỉ số tài nguyên của từng Docker container qua cổng 8080.
+- `node_exporter (1/1 up)`: Thu thập thông số phần cứng của máy chủ Host Ubuntu qua cổng 9100.
+- `prometheus (1/1 up)`: Thu thập chỉ số hiệu năng nội tại của chính máy chủ Prometheus.
+Thời gian thu thập gần nhất (Last Scrape) đều dưới 15 giây và cột Error hoàn toàn trống rỗng, chứng minh luồng thu thập dữ liệu chuỗi thời gian vận hành liên tục và ổn định.
+
+Tiếp theo, bảng điều khiển tổng hợp trên Grafana Dashboard được kiểm tra hiển thị số liệu thực tế:
+
+![Hình 7.4: Bảng điều khiển Grafana Overview hiển thị số liệu hiệu năng thực tế](images/04_grafana_dashboard.png)
+*Hình 7.4: Bảng điều khiển Grafana Overview hiển thị số liệu hiệu năng thực tế.*
+
+*Giải thích minh chứng Hình 7.4:* Ảnh chụp màn hình bảng điều khiển "DevOps System & Container Overview" trên Grafana xác nhận dữ liệu được nạp thời gian thực từ datasource Prometheus. Các đồng hồ đo (Gauges) phản ánh chính xác các thông số vận hành thực tế của máy chủ Host: mức tiêu thụ CPU đạt 6.56%, bộ nhớ RAM đang sử dụng đạt 43.0%, dung lượng ổ đĩa phân vùng gốc đạt 86.1% và thời gian hoạt động liên tục (Host Uptime) đạt 1.45 giờ.
+
+## 7.5. Kiểm thử Khả năng Truy vấn Nhật ký Thực tế của Loki
+
+Hệ thống tập trung nhật ký được kiểm tra trên giao diện Grafana Explore với datasource Loki:
+
+![Hình 7.5: Kết quả truy vấn LogQL {job="nginx"} trên Grafana Explore](images/05_loki_logql.png)
+*Hình 7.5: Kết quả truy vấn LogQL {job="nginx"} trên Grafana Explore.*
+
+*Giải thích minh chứng Hình 7.5:* Ảnh chụp màn hình Grafana Explore chứng minh Promtail và Loki đã phối hợp thu thập thành công luồng nhật ký từ Nginx Reverse Proxy. Khi thực thi câu lệnh LogQL `{job="nginx"}`, hệ thống hiển thị biểu đồ phân bổ tần suất nhật ký (Logs Volume) ghi nhận tổng cộng 825 bản ghi truy cập trong 1 giờ gần nhất. Bảng danh sách chi tiết bên dưới hiển thị chuẩn xác từng dòng log HTTP request thực tế kèm mã phản hồi 200/301, địa chỉ IP máy khách và thời gian xử lý.
+
+# CHƯƠNG 8: HẠN CHẾ THỰC TẾ VÀ HƯỚNG PHÁT TRIỂN
+
+## 8.1. Các hạn chế kỹ thuật trong môi trường thử nghiệm
+
+Mặc dù hệ thống đã đáp ứng đầy đủ và vượt mức các tiêu chí đề ra trong bài tập cuối kỳ, nhóm nghiên cứu vẫn thẳng thắn nhìn nhận một số hạn chế mang tính khách quan do giới hạn của môi trường thực nghiệm máy ảo đơn lẻ (Single-node VM):
+1. **Chứng chỉ SSL Self-signed:** Do máy chủ vận hành trên dải IP mạng cục bộ ảo hóa (`192.168.177.128`) không có tên miền công khai (Public Fully Qualified Domain Name - FQDN), hệ thống bắt buộc phải sử dụng chứng chỉ tự ký. Trình duyệt người dùng sẽ cảnh báo thiếu tin cậy cho tới khi chứng chỉ gốc được cài đặt thủ công vào Trusted Root Certification Authorities.
+2. **Kiến trúc Single-Point-of-Failure (SPOF):** Toàn bộ 10 container dịch vụ đều đang chạy trên một máy chủ vật lý/máy ảo duy nhất. Nếu máy chủ ảo Ubuntu gặp sự cố phần cứng, toàn bộ hệ thống sẽ ngừng hoạt động.
+3. **Cơ chế lưu trữ log nội bộ:** Dữ liệu log của Loki và metrics của Prometheus hiện đang lưu trên các Docker Volume cục bộ, chưa có cơ chế đẩy sang các kho lưu trữ đối tượng phân tán (Object Storage như MinIO hoặc Amazon S3) để lưu trữ dài hạn (Long-term Retention).
+
+## 8.2. Đề xuất kiến trúc mở rộng trong môi trường Doanh nghiệp (Enterprise Production)
+
+Nhằm nâng cấp hệ thống đáp ứng quy mô sản xuất thực tế với hàng triệu lượt truy cập mỗi ngày, nhóm đề xuất các hướng phát triển nâng cao:
+1. **Chuyển dịch sang điều phối cụm (Orchestration with Kubernetes / K8s):**
+   - Đóng gói ứng dụng thành các Helm Charts.
+   - Sử dụng Kubernetes Ingress Controller kết hợp cert-manager để tự động phát hành và gia hạn chứng chỉ Let's Encrypt SSL/TLS hoàn toàn miễn phí.
+   - Thiết lập Horizontal Pod Autoscaler (HPA) tự động tăng giảm số lượng bản sao (replicas) của WordPress dựa trên chỉ số CPU/RAM do cAdvisor cung cấp.
+2. **Cụm Cơ sở dữ liệu độ sẵn sàng cao (High Availability Database Cluster):**
+   - Triển khai mô hình MySQL InnoDB Cluster hoặc MySQL Replication (1 Master - Nhiều Read Replicas) kết hợp ProxySQL để cân bằng tải đọc/ghi.
+3. **Tự động hóa toàn diện quy trình CI/CD:**
+   - Xây dựng Pipeline với GitHub Actions hoặc GitLab CI.
+   - Tự động chạy kiểm thử an toàn tĩnh (SAST), quét lỗ hổng container image với Trivy trước khi tự động deploy lên môi trường staging.
+4. **Hệ thống cảnh báo chủ động (Alerting Integration):**
+   - Tích hợp Prometheus Alertmanager để tự động gửi thông báo khẩn cấp tới kênh Telegram, Slack hoặc email của đội ngũ kỹ thuật khi CPU > 85% hoặc tỷ lệ lỗi HTTP 5xx tăng đột biến.
+
+---
+
+\newpage
+
+# KẾT LUẬN
+
+Sau quá trình nghiên cứu lý thuyết, thiết kế kiến trúc và trực tiếp triển khai thực nghiệm trên máy chủ Ubuntu Linux, đề tài **"Thiết kế, triển khai và vận hành hệ thống Cổng thông tin tin tức trên nền tảng container với Docker Compose, Nginx Reverse Proxy, Prometheus, Grafana, Loki và Promtail"** đã được hoàn thành xuất sắc, đạt được 100% các mục tiêu học thuật và kỹ thuật:
+
+1. **Về mặt Hạ tầng và Ứng dụng:** Đã xây dựng thành công cổng thông tin WordPress kết nối ổn định với MySQL 8.0 và phpMyAdmin. Hệ thống hoạt động trơn tru đằng sau Nginx Reverse Proxy với cơ chế mã hóa HTTPS và các tiêu chuẩn bảo mật HTTP Security Headers.
+2. **Về mặt Bền vững dữ liệu:** Đã kiểm chứng cơ chế Named Volumes, đảm bảo an toàn tuyệt đối cho dữ liệu website và CSDL sau các chu kỳ khởi động lại.
+3. **Về mặt Giám sát Metrics:** Đã triển khai hoàn chỉnh cụm giám sát Prometheus, Node Exporter, cAdvisor và Grafana với cơ chế tự động nạp cấu hình (Provisioning), phản ánh chính xác các thông số hiệu năng phần cứng và tài nguyên container theo thời gian thực.
+4. **Về mặt Giám sát Nhật ký (Logging):** Đã làm chủ công nghệ Grafana Loki và Promtail, thiết kế hệ thống nhãn khoa học và thực thi thành công 3 truy vấn LogQL phức tạp giải quyết trọn vẹn bài toán vận hành hệ thống.
+5. **Về mặt Quản trị An toàn (Hardening) và Quy trình:** Đã áp dụng phân tách mạng đa tầng (Network Segmentation), giới hạn đặc quyền container, bảo vệ tuyệt đối thông tin nhạy cảm qua `.env` và quản lý phiên bản mã nguồn bài bản theo chuẩn Git Conventional Commits.
+
+Đề tài không chỉ mang lại kết quả thực nghiệm hoàn chỉnh mà còn giúp sinh viên củng cố vững chắc kiến thức chuyên sâu về văn hóa DevOps, tư duy thiết kế hệ thống phân tán và kỹ năng giải quyết sự cố thực tế trên môi trường Linux.
+
+---
+
+\newpage
+
+# TÀI LIỆU THAM KHẢO
+
+1. **Docker Inc.** (2024). *Docker Documentation: Docker Compose file reference v2*. Truy cập tại: https://docs.docker.com/compose/
+2. **WordPress Foundation** (2024). *WordPress Developer Handbook & Architecture*. Truy cập tại: https://developer.wordpress.org/
+3. **Nginx Software Inc.** (2024). *NGINX Reverse Proxy & Security Controls Guide*. Truy cập tại: https://docs.nginx.com/
+4. **Prometheus Authors** (2024). *Prometheus Monitoring: An open-source monitoring system and time series database*. Truy cập tại: https://prometheus.io/docs/
+5. **Grafana Labs** (2024). *Grafana Loki: Like Prometheus, but for logs*. Truy cập tại: https://grafana.com/docs/loki/latest/
+6. **OWASP Foundation** (2023). *OWASP Secure Headers Project*. Truy cập tại: https://owasp.org/www-project-secure-headers/
+7. **Canonical Ltd.** (2024). *Ubuntu Server Guide & Security Hardening*. Truy cập tại: https://ubuntu.com/server/docs

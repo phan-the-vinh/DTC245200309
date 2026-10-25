@@ -1,0 +1,46 @@
+{
+  "generated_time_utc": "2026-10-25 18:17:18 UTC",
+  "iso_time": "2026-10-25T18:17:18.000000Z",
+  "wordpress": {
+    "container": "news_wordpress",
+    "job": "webapp",
+    "service": "wordpress",
+    "log_content": "[TEST_ERROR] [SIMULATION] [2026-10-25 18:17:18 UTC] WordPress simulated application error log for Grafana Explore verification",
+    "logql_queries": [
+      "{container=\"news_wordpress\"} |= \"TEST_ERROR\"",
+      "{job=\"webapp\"} |= \"TEST_ERROR\""
+    ],
+    "verified_in_loki": true,
+    "matched_lines": [
+      [
+        "1792952238819152234",
+        "[TEST_ERROR] [SIMULATION] [2026-10-25 18:17:18 UTC] WordPress simulated application error log for Grafana Explore verification"
+      ],
+      [
+        "1792951793445083087",
+        "172.19.0.1 - - [25/Oct/2026:18:09:53 +0000] \"GET /?simulation=TEST_ERROR_WORDPRESS_SIMULATED_LOG HTTP/1.1\" 200 71331 \"-\" \"curl/8.18.0\""
+      ]
+    ]
+  },
+  "mysql": {
+    "container": "news_mysql",
+    "job": "database",
+    "service": "mysql",
+    "log_content": "2026-10-25T18:17:18.000000Z 0 [ERROR] [MY-000000] [Server] [TEST_ERROR] [SIMULATION] MySQL simulated database error log for Grafana Explore verification",
+    "logql_queries": [
+      "{container=\"news_mysql\"} |= \"TEST_ERROR\"",
+      "{job=\"database\"} |= \"TEST_ERROR\""
+    ],
+    "verified_in_loki": true,
+    "matched_lines": [
+      [
+        "1792952239269605786",
+        "2026-10-25T18:17:18.000000Z 0 [ERROR] [MY-000000] [Server] [TEST_ERROR] [SIMULATION] MySQL simulated database error log for Grafana Explore verification"
+      ],
+      [
+        "1792952120440739082",
+        "2026-10-26T01:16:00.000000Z 0 [ERROR] [MY-000000] [Server] [TEST_ERROR] [SIMULATION] Host-injected simulated test error for MySQL container"
+      ]
+    ]
+  }
+}
